@@ -1,0 +1,7 @@
+{
+    "domain": "dev-revathi.us.auth0.com",
+    "clientId": "W16N7uFi6mLQAOdU7FoUwRJPbcUDUO9l",
+    "apiUri": "http://localhost:5000",
+    "appUri": "http://localhost:4200",
+    "errorPath": "/error"
+}

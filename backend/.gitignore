@@ -1,0 +1,8 @@
+# Build results
+dist
+
+# Packages and package.json files
+node_modules
+
+# Environment
+.env

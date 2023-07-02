@@ -1,0 +1,324 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+:root {
+  --custom__primary-color: #071c1f;
+  --custom__primary-color-2: #041113; /* Darken */
+  --custom__primary-color-3: #133236; /* Lighten */
+  --custom__secondary-color: #80b500;
+  /* --custom__secondary-color: #e53e29; */
+  --custom__secondary-color-2: #699403; /* Darken */
+  --custom__secondary-color-3: #a2da1c; /* Lighten */
+  --custom__heading-color: #071c1f;
+  --custom__paragraph-color: #071c1f;
+
+  --custom__heading-font: "Rajdhani", sans-serif;
+  --custom__body-font: "Open Sans", sans-serif;
+
+  /* Footer ACD2D8 8CB2B2  */
+  --custom__color-1: #8cb2b2;
+  --custom__color-2: #acd2d8;
+  --custom__color-3: #a3bcc0;
+  --custom__color-4: #84a2a6;
+
+  /* Gradient Colors */
+  --gradient-color-1: linear-gradient(
+    90deg,
+    rgba(242, 139, 194, 1) 0%,
+    rgba(216, 177, 242, 1) 50%
+  );
+  --gradient-color-2: linear-gradient(
+    to top,
+    rgba(7, 28, 31, 0) 0%,
+    rgba(7, 28, 31, 1) 90%
+  );
+  --gradient-color-3: linear-gradient(
+    to bottom,
+    rgba(7, 28, 31, 0) 0%,
+    rgba(7, 28, 31, 1) 90%
+  );
+  --gradient-color-4: linear-gradient(
+    to top,
+    rgba(242, 246, 247, 0) 0%,
+    rgba(242, 246, 247, 1) 90%
+  );
+
+  /* Background Colors */
+  --section-bg-1: #f7f5eb; /* White */
+  /* --section-bg-1: #F2F6F7; /* White */
+  --section-bg-2: #071c1f; /* Black */
+
+  --section-bg-5: #272829; /* Black */
+  --section-bg-6: #fdfdfd; /* White */
+
+  /* Border Colors */
+  --border-color-1: #e5eaee; /* White */
+  --border-color-2: #1e2021; /* Black */
+  --border-color-3: #576466; /* Black */
+  --border-color-4: #eb6954; /* Red */
+  --border-color-5: #bc3928; /* Red */
+  --border-color-6: #103034; /* Black */
+  --border-color-7: #d1dae0; /* White */
+  --border-color-8: #f6f6f6; /* White */
+  --border-color-9: #e4ecf2; /* White */
+  --border-color-10: #ebeeee; /* White */
+  --border-color-11: #ededed; /* White */
+  --border-color-12: #e1e6ff; /* White */
+
+  /* Box Shadow Colors */
+  --custom__box-shadow-1: 0 16px 32px 0 rgba(7, 28, 31, 0.1);
+  --custom__box-shadow-2: 0 0 4px rgba(0, 0, 0, 0.1); /* like border */
+  --custom__box-shadow-3: 0 1px 6px 0 rgba(54, 56, 61, 0.15); /* like border GGL */
+  --custom__box-shadow-4: 0 5px 20px 0 rgba(23, 44, 82, 0.1);
+  --custom__box-shadow-5: 0 8px 16px 0 rgba(93, 93, 93, 0.1);
+  // --custom__box-shadow-6: 0 8px 16px 0 rgba(229, 62, 41, 0.70);
+  --custom__box-shadow-6: 0 0 25px 2px rgba(93, 93, 93, 0.2);
+
+  /* Common Colors */
+  --black: #000000;
+  --black-2: #22355b;
+  --white: #fff;
+  --white-2: #f2f6f7;
+  --white-3: #e8edee;
+  --white-4: #e6ecf0;
+  --white-5: #f0f4f7;
+  --white-6: #f1f1f1;
+  --white-7: #f7f7f7;
+  --white-8: #fafafa;
+  --white-9: #f2f7fa;
+  --red: #ff0000;
+  --red-2: #f34f3f;
+  --red-3: #db483b;
+  --silver: #c0c0c0;
+  --gray: #808080;
+  --maroon: #800000;
+  --yellow: #ffff00;
+  --olive: #808000;
+  --lime: #00ff00;
+  --green: #008000;
+  --aqua: #00ffff;
+  --teal: #008080;
+  --blue: #0000ff;
+  --navy: #000080;
+  --fuchsia: #ff00ff;
+  --purple: #800080;
+  --pink: #ffc0cb;
+  --nude: #ebc8b2;
+  --orange: #ffa500;
+  --ratings: #ffb800;
+
+  /* social media colors */
+  --facebook: #365493;
+  --twitter: #3cf;
+  --linkedin: #0077b5;
+  --pinterest: #c8232c;
+  --dribbble: #ea4c89;
+  --behance: #131418;
+  --google-plus: #dd4b39;
+  --instagram: #e4405f;
+  --vk: #3b5998;
+  --wechat: #7bb32e;
+  --youtube: #cb2027;
+  --email: #f89a1e;
+}
+
+$main-color: #eae7dc;
+$sub-color: #d8c3a5;
+$dim-color: #8e8d8a;
+$text-color: #e98074;
+$text-color1: #e85a4f;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--custom__paragraph-color);
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  font-family: var(--custom__body-font);
+  line-height: 1.8;
+  margin: 0 auto;
+}
+
+#main {
+  position: relative;
+  .navbar-brand img {
+    max-width: 120px;
+  }
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="submit"],
+textarea {
+  background-color: var(--white);
+  border: 2px solid;
+  border-color: var(--border-color-9);
+  height: 65px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding-left: 20px;
+  font-size: 16px;
+  color: var(--custom__paragraph-color);
+  width: 100%;
+  margin-bottom: 30px;
+  border-radius: 0;
+  padding-right: 40px;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: var(--custom__heading-color) !important;
+  font-family: var(--custom__heading-font);
+  font-weight: 700 !important;
+  line-height: 1.3;
+  clear: both;
+  margin-bottom: 15px;
+}
+
+a {
+  text-decoration: none !important;
+  outline: none !important;
+  color: var(--custom__primary-color);
+}
+
+ul > li {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+  border-style: none;
+}
+
+.btn {
+  border-radius: 0 !important;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700 !important;
+  font-family: var(--custom__heading-font);
+  padding: 15px 40px !important;
+  text-align: center;
+  transition: all 0.3s ease 0s !important;
+  position: relative;
+  z-index: 1;
+}
+
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.modal {
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden;
+  .modal-dialog {
+    margin-top: 150px;
+  }
+  .btn-close {
+    position: absolute;
+    height: 5px;
+    width: 3px;
+    line-height: 33px;
+    right: 15px;
+    left: auto;
+    top: 13px;
+    opacity: 1;
+    z-index: 1;
+    transition: all 0.3s ease 0s;
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    pointer-events: auto;
+    background-color: var(--white);
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+  }
+
+  .modal-body {
+    padding: 15px;
+  }
+}
+
+.mat-mdc-slider .mdc-slider__track--inactive,
+.mat-mdc-slider .mdc-slider__track--active,
+.mdc-slider__track--active_fill {
+  background-color: var(--custom__primary-color) !important;
+  border-color: var(--custom__primary-color) !important;
+}
+
+.mdc-slider__thumb-knob {
+  background-color: var(--custom__secondary-color) !important;
+  border-color: var(--custom__secondary-color) !important;
+}
+
+.mat-mdc-table {
+  background: var(--white);
+}
+
+.mdc-data-table__cell{
+  color: var(--custom__primary-color);
+}
+
+.mdc-data-table__cell, .mdc-data-table__header-cell {
+  border-bottom: 1px solid var(--border-color-1);
+}
+
+.mdc-data-table__cell, .mdc-data-table__header-cell:first-child{
+  border-top: 1px solid var(--border-color-1);
+}
+
+.mat-column-name {
+  height: 100px;
+}
+
+.mat-expansion-panel {
+  background-color: var(--white) !important;
+  border-color: var(--white) !important;
+  color: var(--custom__heading-color) !important;
+}
+
+.mat-expansion-panel-header-title {
+  color: var(--custom__heading-color) !important;
+}
+
+.mat-mdc-radio-button.mat-mdc-radio-checked .mdc-radio__background::before{
+  background-color: var(--custom__secondary-color) !important;
+  border-color: var(--custom__secondary-color) !important;
+}
+
+.mat-mdc-radio-button .mdc-radio .mdc-radio__native-control:enabled+.mdc-radio__background .mdc-radio__inner-circle {
+  border-color: var(--custom__secondary-color) !important;
+}

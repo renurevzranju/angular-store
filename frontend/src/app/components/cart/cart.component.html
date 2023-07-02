@@ -1,0 +1,105 @@
+<div class="container" *ngIf="isCartEmpty; else cartContent">
+  <div class="row text-center">
+    <div class="col-12">
+      <img
+        class="img-responsive text-center"
+        src="../../../assets/images/empty-cart.png"
+        alt="Empty Cart"
+      />
+    </div>
+    <div class="col-12">
+      <b class="fs-1">Your cart is empty</b>
+      <p>
+        Looks like you have not added anything to your cart. Go ahead & explore
+        the top products.
+      </p>
+    </div>
+  </div>
+</div>
+
+<ng-template #cartContent>
+  <div class="container cart-container">
+    <div class="row">
+      <div class="col-lg-12">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z0">
+          <!-- Position Column -->
+          <ng-container matColumnDef="id">
+            <!-- <mat-header-cell *matHeaderCellDef> No. </mat-header-cell> -->
+            <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="imgID">
+            <!-- <mat-header-cell *matHeaderCellDef> Name </mat-header-cell> -->
+            <mat-cell *matCellDef="let element">
+              <img
+                src="../../../assets/images/product/{{ element.imgID }}.png"
+                alt="product"
+                height="100"
+                width="100"
+              />
+            </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <!-- <mat-header-cell *matHeaderCellDef> Name </mat-header-cell> -->
+            <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="price">
+            <!-- <mat-header-cell *matHeaderCellDef> Price </mat-header-cell> -->
+            <mat-cell *matCellDef="let element">
+              {{ element.price | currency : "INR" }}
+            </mat-cell>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="quantity">
+            <!-- <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell> -->
+            <mat-cell *matCellDef="let element">
+              {{ element.quantity }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="total">
+            <!-- <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell> -->
+            <mat-cell *matCellDef="let element">
+              {{ element.total | currency : "INR" }}
+            </mat-cell>
+          </ng-container>
+
+          <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> -->
+          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+      </div>
+      <div class="col-lg-12">
+        <div class="cart-total">
+          <h4>Cart Total</h4>
+          <table class="table table-striped">
+            <tbody>
+              <tr>
+                <td>Cart SubTotal</td>
+                <td>{{ 618 | currency : "INR" }}</td>
+              </tr>
+              <tr>
+                <td>Shipping and Handing</td>
+                <td>{{ 618 | currency : "INR" }}</td>
+              </tr>
+              <tr>
+                <td><strong>Order Total</strong></td>
+                <td>
+                  <strong>{{ 618 | currency : "INR" }}</strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="text-right">
+            <button class="btn checkout-btn w-100" routerLink="/cart/checkout">Proceed to checkout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

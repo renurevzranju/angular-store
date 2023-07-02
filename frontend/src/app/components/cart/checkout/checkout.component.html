@@ -1,0 +1,189 @@
+<div class="checkout-container container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="billing-address">
+                <h4 class="title">Billing Address</h4>
+                <div class="checkout-info">
+                    <form action="#">
+                        <h6>Personal Information</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="input-item input-item-name ltn__custom-icon">
+                                    <input type="text" name="ltn__name" placeholder="First name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-item input-item-name ltn__custom-icon">
+                                    <input type="text" name="ltn__lastname" placeholder="Last name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-item input-item-email ltn__custom-icon">
+                                    <input type="email" name="ltn__email" placeholder="email address">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-item input-item-phone ltn__custom-icon">
+                                    <input type="text" name="ltn__phone" placeholder="phone number">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-item input-item-website ltn__custom-icon">
+                                    <input type="text" name="ltn__company" placeholder="Company name (optional)">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-item input-item-website ltn__custom-icon">
+                                    <input type="text" name="ltn__phone" placeholder="Company address (optional)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6">
+                                <h6>Country</h6>
+                                <div class="input-item">
+                                    <select class="nice-select" >
+                                        <option>Select Country</option>
+                                        <option>Australia</option>
+                                        <option>Canada</option>
+                                        <option>China</option>
+                                        <option>Morocco</option>
+                                        <option>Saudi Arabia</option>
+                                        <option>United Kingdom (UK)</option>
+                                        <option>United States (US)</option>
+                                    </select>
+                                    <div class="nice-select" tabindex="0" style="display: none;"><span class="current">Select Country</span>
+                                        <ul class="list">
+                                            <li data-value="Select Country" class="option selected">Select Country</li>
+                                            <li data-value="Australia" class="option">Australia</li>
+                                            <li data-value="Canada" class="option">Canada</li>
+                                            <li data-value="China" class="option">China</li>
+                                            <li data-value="Morocco" class="option">Morocco</li>
+                                            <li data-value="Saudi Arabia" class="option">Saudi Arabia</li>
+                                            <li data-value="United Kingdom (UK)" class="option">United Kingdom (UK)</li>
+                                            <li data-value="United States (US)" class="option">United States (US)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12">
+                                <h6>Address</h6>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="input-item">
+                                            <input type="text" placeholder="House number and street name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="input-item">
+                                            <input type="text" placeholder="Apartment, suite, unit etc. (optional)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <h6>Town / City</h6>
+                                <div class="input-item">
+                                    <input type="text" placeholder="City">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <h6>State </h6>
+                                <div class="input-item">
+                                    <input type="text" placeholder="State">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6">
+                                <h6>Zip</h6>
+                                <div class="input-item">
+                                    <input type="text" placeholder="Zip">
+                                </div>
+                            </div>
+                        </div>
+                        <p><label class="input-info-save mb-0"><input type="checkbox" name="agree"> Create an
+                                account?</label></p>
+                        <h6>Order Notes (optional)</h6>
+                        <div class="input-item input-item-textarea ltn__custom-icon">
+                            <textarea name="ltn__message"
+                                placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="payment-method">
+                <h4 class="title">Payment Method</h4>
+                <mat-accordion>
+                    <mat-expansion-panel (opened)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <mat-radio-button class="example-radio-button"
+                                    [value]="panelOpenState"></mat-radio-button>
+                                Check payments
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>
+                            Please send a check to Store Name, Store Street, Store Town, Store
+                            State / County, Store Postcode.
+                        </p>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <mat-radio-button class="example-radio-button"
+                                    [value]="panelOpenState"></mat-radio-button>
+                                Cash on delivery</mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>Pay with cash upon delivery.</p>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <mat-radio-button class="example-radio-button"
+                                    [value]="panelOpenState"></mat-radio-button>
+                                PayPal
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p>
+                            Pay via PayPal; you can pay with your credit card if you don’t
+                            have a PayPal account.
+                        </p>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                <div class="payment-note">
+                    <p>
+                        Your personal data will be used to process your order, support your
+                        experience throughout this website, and for other purposes described
+                        in our privacy policy.
+                    </p>
+                </div>
+                <button class="btn place-order-btn">PLACE ORDER</button>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="cart-total">
+                <h4 class="title">Cart Total</h4>
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>Cart SubTotal</td>
+                            <td>{{ 618 | currency : "INR" }}</td>
+                        </tr>
+                        <tr>
+                            <td>Shipping and Handing</td>
+                            <td>{{ 618 | currency : "INR" }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Order Total</strong></td>
+                            <td>
+                                <strong>{{ 618 | currency : "INR" }}</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
