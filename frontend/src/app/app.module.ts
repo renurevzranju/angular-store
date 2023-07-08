@@ -9,13 +9,17 @@ import { environment as env } from '../environments/environment';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { FooterComponent } from './components/footer/footer.component';
+import { FormsModule, ReactiveFormsModule  }   from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +31,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       },
     }),
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 10000,
+      preventDuplicates: true
+    }),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

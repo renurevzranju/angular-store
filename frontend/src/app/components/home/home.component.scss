@@ -1,0 +1,99 @@
+#carousel{
+    .carousel-item{
+        .slider-img{
+            width: 38%;
+            position: absolute;
+            right: 150px;
+            top: auto;
+            bottom: 100px;
+            height: 200px;
+            transform: translateY(20%);
+        }
+
+        .img-left{
+            right: auto;
+            left: 60px;
+            transform: translateY(-12%);
+        }
+
+        .slider-info{
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+            padding: 3% 0;
+        }
+
+        .text-right.slider-info {
+            margin-left: auto;
+        }
+
+        .text-left.slider-info {
+            margin-right: auto;
+        }
+
+        .title {
+            font-size: 45px;
+        }
+
+        .slider-buttons {
+            margin: 40px auto;
+        }
+    }
+}
+
+.banner{
+    margin: 60px auto 40px;
+
+    .banner-img{
+        overflow: hidden;
+
+        &:hover img{
+            transition: all 3.5s ease 0s;
+            -ms-transform: scale(1.1);
+            transform: scale(1.1);
+            -webkit-transform: scale(1.1);
+        }
+    }
+}
+
+
+.product-categories{
+    padding-bottom: 90px;
+    .meat{
+        background-image: url("../../../assets/images/category/meat.jpg");
+    }
+    .fruit{
+        background-image: url("../../../assets/images/category/fruits.jpg");
+    }
+    .bread{
+        background-image: url("../../../assets/images/category/bread.jpg");
+    }
+    .beverage{
+        background-image: url("../../../assets/images/category/juice.jpg");
+    }
+    .veg{
+        background-image: url("../../../assets/images/category/veggies.jpeg");
+        height: 406px;
+    }
+    .category{
+        padding: 90px 1px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: all 3.3s ease 0s;
+
+        &:hover{
+            opacity: 0.6;
+        }
+
+        span{
+            color: var(--white);
+            background-color: var(--custom__secondary-color);
+            padding: 15px 40px;
+
+        }
+    }
+}

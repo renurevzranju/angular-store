@@ -23,16 +23,5 @@
                 border-top: 1px solid #dee2e6;
             }
         }
-
-        .checkout-btn {
-            background-color: var(--custom__secondary-color);
-            color: var(--white);
-            border-radius: 0%;
-
-            &:hover {
-                color: var(--custom__heading-color);
-                background-color: var(--white);
-            }
-        }
     }
 }

@@ -29,11 +29,11 @@
           </ng-container>
 
           <!-- Name Column -->
-          <ng-container matColumnDef="imgID">
+          <ng-container matColumnDef="imageCode">
             <!-- <mat-header-cell *matHeaderCellDef> Name </mat-header-cell> -->
             <mat-cell *matCellDef="let element">
               <img
-                src="../../../assets/images/product/{{ element.imgID }}.png"
+                src="../../../assets/images/product/{{ element.imageCode }}.png"
                 alt="product"
                 height="100"
                 width="100"
@@ -96,7 +96,7 @@
             </tbody>
           </table>
           <div class="text-right">
-            <button class="btn checkout-btn w-100" routerLink="/cart/checkout">Proceed to checkout</button>
+            <button class="checkout-btn w-100 custom-button" routerLink="/cart/checkout">Proceed to checkout</button>
           </div>
         </div>
       </div>

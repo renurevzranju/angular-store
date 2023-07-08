@@ -6,29 +6,7 @@
 				<div class="product-list-view">
 					<div class="row">
 						<div class="col-xl-4 col-sm-6 col-6" *ngFor="let product of productList">
-							<mat-card class="product-item">
-								<img mat-card-image src="../../../../assets/images/product/{{ product.id }}.png" alt="product image" />
-								<mat-card-content class="product-info">
-									<div class="product-title" routerLink="/products/details">{{ product.name }}</div>
-									<div class="product-price">
-										{{ product.price | currency : "INR" }}
-									</div>
-									<div class="product-actions">
-										<ul class="d-inline-block p-0 m-0">
-											<li>
-												<a data-bs-toggle="modal" data-bs-target="#productDetailModal">
-													<i class="bi bi-eye-fill"></i>
-												</a>
-											</li>
-											<li>
-												<a routerLink="/cart">
-													<i class="bi bi-cart-plus"></i>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</mat-card-content>
-							</mat-card>
+							<app-product-item [product]="product"></app-product-item>
 						</div>
 					</div>
 				</div>
@@ -61,55 +39,6 @@
 						</mat-slider>
 					</div>
 				</aside>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade" id="productDetailModal" tabindex="-1" aria-labelledby="productDetailModalLabel"
-	aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header p-0 m-0">
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body container-fluid">
-				<div class="row">
-					<div class="col-lg-6 col-12">
-						<div class="modal-img">
-							<img src="../../../../assets/images/product/1.png" alt="product image" />
-						</div>
-					</div>
-					<div class="col-lg-6 col-12">
-						<div class="product-info">
-							<h3 class="mb-3">Tomato</h3>
-							<div class="product-price">{{ 149 | currency : "INR" }}</div>
-							<div class="product-desc">
-								<strong class="d-inline-block pe-2">Description:</strong>
-								<span>Potatoes are nutrient-dense, non-fattening and have
-									reasonable amount of calories. Include them in your regular
-									meals so that the body receives a good supply of
-									carbohydrates, dietary fibers and essential minerals such as
-									copper, magnesium, and iron. In India, potatoes are probably
-									the second-most consumed vegetables after onions.</span>
-							</div>
-							<div class="product-add-cart">
-								<ul class="p-0 m-0">
-									<li>
-										<div class="cart-plus-minus">
-											<div class="dec quantityButton">-</div>
-											<input type="text" [(ngModel)]="cartQuantity" class="cart-plus-minus-box">
-											<div class="inc quantityButton">+</div>
-										</div>
-									</li>
-									<li>
-										<button class="add-to-cart mr-0"><i class="bi bi-cart3"></i>ADD TO CART</button>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
