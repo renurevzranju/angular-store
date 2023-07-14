@@ -6,12 +6,14 @@ const model = new ProductModel();
 export default class ProductHandler {
   async create(_request: Request, response: Response) {
     try {
-      const { name, price, category } = _request.body;
+      const { name, price, category, description, imageCode } = _request.body;
       if (name && price) {
         const product = await model.create({
           name,
           price: Number(price),
           category,
+          description,
+          imageCode
         });
         response
           .status(200)
@@ -98,21 +100,21 @@ export default class ProductHandler {
     }
   }
 
-  async update(_request: Request, response: Response) {
-    try {
-      const { id } = _request.params;
-      const { name, price, category } = _request.body;
+  // async update(_request: Request, response: Response) {
+  //   try {
+  //     const { id } = _request.params;
+  //     const { name, price, category } = _request.body;
 
-      const product = await model.update({
-        id: Number(id),
-        name,
-        price: Number(price),
-        category,
-      });
+  //     const product = await model.update({
+  //       id: Number(id),
+  //       name,
+  //       price: Number(price),
+  //       category,
+  //     });
 
-      response.status(200).json(product);
-    } catch (error) {
-      response.status(500).json(`error while updating the product: ${error}`);
-    }
-  }
+  //     response.status(200).json(product);
+  //   } catch (error) {
+  //     response.status(500).json(`error while updating the product: ${error}`);
+  //   }
+  // }
 }

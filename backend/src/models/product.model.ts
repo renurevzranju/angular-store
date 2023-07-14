@@ -5,6 +5,8 @@ export type Product = {
   name: string;
   price: number;
   category: string;
+  description?: string;
+  imageCode: string;
 };
 
 export class ProductModel {
@@ -14,6 +16,8 @@ export class ProductModel {
    * @param {string} product.name name of the product.
    * @param {number} product.price price of the product.
    * @param {string} product.category category of the product.
+   * @param {string} product.description description of the product.
+   * @param {string} product.imageCode image code of the product.
    * @return {Product} Product object that was created.
    */
   async create(product: Product): Promise<Product> {
@@ -21,12 +25,14 @@ export class ProductModel {
       // @ts-ignore
       const connection = await client.connect();
       const sql =
-        "INSERT INTO products (name, price, category) VALUES($1, $2, $3) RETURNING *";
+        "INSERT INTO products (name, price, category, description, imagecode) VALUES($1, $2, $3, $4, $5) RETURNING *";
 
       const result = await connection.query(sql, [
         product.name,
         product.price,
         product.category,
+        product.description,
+        product.imageCode
       ]);
       const createdProduct = result.rows[0];
       connection.release();
@@ -164,27 +170,27 @@ export class ProductModel {
    * @param {string} product.category category of the product.
    * @return {Product} Product object that was edited.
    */
-  async update(product: Product): Promise<Product> {
-    try {
-      // @ts-ignore
-      const connection = await client.connect();
-      const sql =
-        "UPDATE products set name = $2, price = $3, category = $4 WHERE id = $1 RETURNING *";
+  // async update(product: Product): Promise<Product> {
+  //   try {
+  //     // @ts-ignore
+  //     const connection = await client.connect();
+  //     const sql =
+  //       "UPDATE products set name = $2, price = $3, category = $4 WHERE id = $1 RETURNING *";
 
-      const result = await connection.query(sql, [
-        product.id,
-        product.name,
-        product.price,
-        product.category,
-      ]);
-      const editedProduct = result.rows[0];
-      connection.release();
+  //     const result = await connection.query(sql, [
+  //       product.id,
+  //       product.name,
+  //       product.price,
+  //       product.category,
+  //     ]);
+  //     const editedProduct = result.rows[0];
+  //     connection.release();
 
-      return editedProduct;
-    } catch (err) {
-      throw new Error(
-        `Unable to update product ${product.name}. Error: ${err}`
-      );
-    }
-  }
+  //     return editedProduct;
+  //   } catch (err) {
+  //     throw new Error(
+  //       `Unable to update product ${product.name}. Error: ${err}`
+  //     );
+  //   }
+  // }
 }

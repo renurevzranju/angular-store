@@ -26,32 +26,19 @@
           </nav>
         </div>
         <div class="col-2 header-options">
-          <!-- header-search-1 -->
-          <div class="icon header-search-wrap position-relative">
-            <div class="header-search pe-auto d-inline-block">
-              <span class="search-icon">
-                <i class="bi bi-search for-search-show"></i>
-                <i class="bi bi-x for-search-close d-none"></i>
-              </span>
-            </div>
-            <div class="header-search-form d-none">
-              <form id="#" method="get" action="#">
-                <input
-                  type="text"
-                  name="search"
-                  value=""
-                  placeholder="Search here..."
-                />
-                <button type="submit">
-                  <span><i class="bi bi-search"></i></span>
-                </button>
-              </form>
-            </div>
-          </div>
           <!-- user-menu -->
-          <div class="icon user-icon">
-            <a href="#"><i class="bi bi-person"></i></a>
+          <div class="icon user-icon" *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+            <a class="pe-auto" (click)="logout()">
+              <i class="bi bi-person"></i>
+            </a>
           </div>
+          <ng-template #loggedOut>
+            <div class="icon user-icon">
+              <a class="pe-auto" (click)="loginWithRedirect()">
+                <i class="bi bi-person-exclamation"></i>
+              </a>
+          </div>
+          </ng-template>
           <!-- mini-cart -->
           <div class="icon mini-cart-icon">
             <a routerLink="/cart" class="toggle">
@@ -98,7 +85,7 @@
       <div class="menu-buttons">
           <ul class="p-0 m-0">
               <li>
-                  <a href="account.html" title="My Account">
+                  <a title="My Account">
                       <span class="btn-icon">
                           <i class="bi bi-person"></i>
                       </span>
@@ -106,7 +93,7 @@
                   </a>
               </li>
               <li>
-                  <a href="cart.html" title="Shoping Cart">
+                  <a title="Shopping Cart">
                       <span class="btn-icon">
                           <i class="bi bi-cart3"></i>
                           <sup>5</sup>

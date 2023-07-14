@@ -1,18 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent{
+export class CheckoutComponent implements OnInit{
   panelOpenState: boolean = false;
   billingForm: FormGroup;
   countries: String[] = ["Australia", "Canada", "China", "India", "Morocco", "Saudi Arabia", "United Kingdom (UK)", "United States (US)"];
   paymentMode: string = "cod";
+  orderPlaced: boolean = false;
+  userName: string = "";
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, public sharedService: SharedService) {
     let emailRegex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let phoneRegex: RegExp = /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
@@ -28,6 +31,10 @@ export class CheckoutComponent{
       zip: [null, Validators.required],
       validate: '',
     });
+  }
+
+  ngOnInit(): void{
+    this.userName = this.sharedService.userData.user_name;
   }
 
   onSubmit() {

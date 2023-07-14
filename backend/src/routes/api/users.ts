@@ -15,11 +15,6 @@ users.delete("/:id", authenticate, (request, response) => {
   userHandler.delete(request, response);
 });
 
-//Login - verify password and generate token again
-users.post("/login", (request, response) => {
-  userHandler.login(request, response);
-});
-
 //Index - Get all users
 users.get("/", authenticate, (request, response) => {
   userHandler.index(request, response);
@@ -30,9 +25,9 @@ users.get("/:id", authenticate, (request, response) => {
   userHandler.show(request, response);
 });
 
-//Edit user based on user id
-users.put("/:id", authenticate, (request, response) => {
-  userHandler.update(request, response);
+//Get user based on email
+users.get("/getUserByEmail/:email", (request, response) => {
+  userHandler.getUserByEmail(request, response);
 });
 
 export default users;

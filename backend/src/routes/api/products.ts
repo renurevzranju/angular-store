@@ -36,8 +36,8 @@ products.get("/:id", (request, response) => {
 });
 
 //Edit product based on product id
-products.put("/:id", (request, response) => {
-  productHandler.update(request, response);
-});
+// products.put("/:id", (request, response) => {
+//   productHandler.update(request, response);
+// });
 
 export default products;
