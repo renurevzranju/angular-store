@@ -1,0 +1,257 @@
+{
+  "fruits": [
+    {
+      "name": "Peach",
+      "price": "120",
+      "category": "fruits",
+      "description": "The peach is a species of the Prunus persica, and is a fruit tree of the rose family Rosaceae. They grow in the warm regions of both the northern and southern hemispheres.",
+      "imageCode": "pec"
+    },
+    {
+      "name": "Papaya",
+      "price": 90,
+      "category": "fruits",
+      "description": "Papaya is a Diabetic friendly fruit,rich in antioxidants,lowers cholestrol levels,helps in digestion.",
+      "imageCode": "pap.png"
+    },
+    {
+      "name": "Stawberry",
+      "price": 70,
+      "category": "fruits",
+      "description": "Extremely juicy and syrupy, these conical heart shaped fruits have seeds on the skin that give them a unique texture. With a blend of sweet-tart flavour, these are everyone's favourite berries.",
+      "imageCode": "sta.png"
+    },
+    {
+      "name": "Pomegranate 4pcs",
+      "price": 176,
+      "category": "fruits",
+      "description": "With a ruby colour and an intensely floral, sweet-tart flavour, the pomegranate delivers both taste and beauty. You can remove the skin and the membranes to get at the delicious fruit with nutty seeds. ",
+      "imageCode": "pom.png"
+    },
+    {
+      "name": "Mango",
+      "price": 70,
+      "category": "fruits",
+      "description": "Mango a super healthy fruit which supports immune system, low in calories, rich in healthy plant compounds.",
+      "imageCode": "man.png"
+    },
+    {
+      "name": "Pear",
+      "price": 185,
+      "category": "fruits",
+      "description": "Pear helps to prevent Cancer, reduces the risk of Diabetics, helps in weight loss.",
+      "imageCode": "pea.png"
+    },
+    {
+      "name": "Kiwi 4pcs",
+      "price": 150,
+      "category": "fruits",
+      "description": "Kiwis are oval shaped with a brownish outer skin. Their flesh is bright green and juicy with tiny, edible black seeds. It is better for juice and smoothies, with its distinct sweet-sour taste and aroma. One Kiwi contains a full daily requirement of vitamin C. It is the perfect fruit for pregnant women as it contains a good amount of folate that prevents neural tube defects and helps in brain growth in infants. It maintains healthy and smooth skin.",
+      "imageCode": "kiw.png"
+    },
+    {
+      "name": "Mangosteen 2 pcs",
+      "price": 62,
+      "category": "fruits",
+      "description": "Mangosteen fruit (Garcinia mangostana) is a unique pear-shaped, sweet, juicy and tangy tropical fruit that has a deep reddish-purple colored exocarp (rind) when ripe. Natives in these parts of the world also refer to mangosteen as queen of fruits or fruit of the gods. This fruit has been a major part in almost every aspect of the traditional medicine in these cultures. The rind of this fruit is used for its medicinal value for generations. Here are some of the most notable mangosteen.",
+      "imageCode": "gos.png"
+    },
+    {
+      "name": "Zespri Kiwi - Sun Gold, 3 pcs",
+      "price": 249,
+      "category": "fruits",
+      "description": "With a smooth, hair-less golden brown coloured skin, sun gold kiwis taste like in between mango and strawberry with a soft and sweet yellow flesh. Full of vitality, this juicy, golden-fleshed new variety has a refreshing sweet taste with just a hint of sourness. An attractive, larger kiwi fruit with a delicate texture inside a smooth skin. Zespri Gold has a beautiful consistent shape and is delighting consumers all over the world.",
+      "imageCode": "gki.png"
+    },
+    {
+      "name": "Passion Fruit, 1 kg",
+      "price": 575,
+      "category": "fruits",
+      "description": "A fruit that gives the taste buds an explosion of sweetness to tartness, passion fruit is generally round shaped with yellow-orange skin.The flesh of a passion fruit is soft and juicy. Its jelly like texture with the crunchiness of numerous tart seeds within the flesh is a taste loved by many.",
+      "imageCode": "pas.png"
+    },
+    {
+      "name": "Apricot",
+      "price": 262,
+      "category": "fruits",
+      "description": "A ripe apricot contains a mellow taste, sweet with a hint of acid, but usually not extremely acidic. They create an outstanding substitute for clean apricots out of season. It is rich in normal sugar, calcium, vitamin C, vitamin B complex, riboflavin, vitamin A and niacin",
+      "imageCode": "api.png"
+    },
+    {
+      "name": "Orange",
+      "price": 70,
+      "category": "fruits",
+      "description": "Orange is rich in Vitamin C ,protects body cells from damage,helps to fight Anemia, gives glow skin, helps to prepare collagen, which helps to repair wounds.",
+      "imageCode": "ora.png"
+    }
+  ],
+  "vegetables": [
+    {
+      "name": "Onion, 1kg",
+      "price": 40,
+      "category": "vegetables",
+      "description": "Onion is a vegetable which is almost like a staple in Indian food. This is also known to be one of the essential ingredients of raw salads. They come in different colours like white, red or yellow and are quite in demand in cold salads and hot soups.",
+      "imageCode": "oni.png"
+    },
+    {
+      "name": "Tomato, 1kg",
+      "price": 150,
+      "category": "vegetables",
+      "description": "Local tomatoes are partly sour and partly sweet and contain many seeds inside which are edible. The red colour present in tomatoes is due to lycopene, an anti-oxidant.",
+      "imageCode": "tom.png"
+    },
+    {
+      "name": "Broccoli, 1pc (Approx. 250g-500g)",
+      "price": 68,
+      "category": "vegetables",
+      "description": "With a shape resembling that of a cauliflower, Brocollis have clusters of small, tight flower heads. These heads turn bright green on cooking and tastes slightly bitter.",
+      "imageCode": "bro.png"
+    },
+    {
+      "name": "Cabbage, 1 pc (approx. 500g-800g)",
+      "price": 26,
+      "category": "vegetables",
+      "description": "With a texture of crispness and juiciness the moment you take the first bite, cabbages are sweet and grassy flavoured with dense and smooth leafy layers.",
+      "imageCode": "cab.png"
+    },
+    {
+      "name": "Avocado, 1kg",
+      "price": 212,
+      "category": "vegetables",
+      "description": "Avocados are oval shaped fruits with a thick green and a bumpy, leathery outer skin. They have a unique-texture, with a creamy and light green coloured flesh that has a buttery flavour and special aroma. Avocados are also known as an alligator pear or butter fruit. Fresho avocados delivered to you, will not just entice your taste buds but will also ensure your well being.",
+      "imageCode": "ava.png"
+    },
+    {
+      "name": "Bell peppers mix",
+      "price": 150,
+      "category": "vegetables",
+      "description": "Capsicum is wealthy in several phytonutrients especially antioxidants, minerals and dietary fiber like manganese, copper, potassium, and magnesium. It is wealthy in Vitamin A, B6, C, E, K and lesser amounts of Thiamin, Niacin and Folate.",
+      "imageCode": "cap.jpg"
+    },
+    {
+      "name": "Red Chillis, 250g",
+      "price": 37,
+      "category": "vegetables",
+      "description": "Chillis are the best kitchen ingredient to bring a dash of spiciness to recipes. The fresh flavour and sharp bite make them a must in almost all Indian dishes. This particular chilli variety is big.",
+      "imageCode": "chi.jpg"
+    },
+    {
+      "name": "Carrots, 1Kg",
+      "price": 94,
+      "category": "vegetables",
+      "description": "Brightly orange colored carrots have pigments like carotenoids and flavonoids, that provide several antioxidants and act as a defense against cancer.",
+      "imageCode": "car.jpg"
+    },
+    {
+      "name": "Palak, 500g",
+      "price": 56,
+      "category": "vegetables",
+      "description": "With a sweet, nutty, and tangent flavor, Palaks are green leafy vegetables that are succulent and spoon-shaped.",
+      "imageCode": "spi.jpg"
+    }
+  ],
+  "beverages": [
+    {
+      "name": "Izze Sparkling Juice",
+      "price": 300,
+      "category": "beverages",
+      "description": "IZZE Sparkling Juices are 70% fruit juice with a splash of sparkling water. No added sugar, preservatives or artificial ingredients, the perfect feel-good drink to brighten up your day",
+      "imageCode": "ize.png"
+    },
+    {
+      "name": "Raw Pressery Coconut Water Packed With Electrolytes",
+      "price": 185,
+      "category": "beverages",
+      "description": "Every athlete’s go-to natural energy drink; Coconut Water is a complete win-win for your everyday rehydration needs. #iaminlovewiththecoco! It is sourced carefully & responsibly, packed with electrolytes and boosts hydration. Moreover, coconut water being great for health will keep you feeling refreshed throughout the day. ",
+      "imageCode": "coc.jpg"
+    },
+    {
+      "name": "Paper Boat Aamras Mango Fruit Juice",
+      "price": 20,
+      "category": "beverages",
+      "description": " An honest treat for an honest day's work. A silkesque ale cascading down your throat - Soothing, serenading and more importantly, lingering. Sometimes enveloped in rotis, sometimes guzzled with milk but the best way to go about Aamras is to have it directly as-is.",
+      "imageCode": "boa.jpg"
+    }
+  ],
+  "bakery": [
+    {
+      "name": "Bagels",
+      "price": 97,
+      "category": "bakery",
+      "description": "Bagel - Plain is a classic gourmet breakfast staple. Spread some cream cheese or butter for a lip-smacking treat. With a crumbly, yet soft texture, it's easy to bite into. Bagels are loaded with nutrients & make for a wholesome & fulfilling meal.",
+      "imageCode": "bag.jpg"
+    },
+    {
+      "name": "Croissant",
+      "price": 115,
+      "category": "bakery",
+      "description": "A croissant is a laminated, yeast-leavened bakery product that contains dough/roll-in fat layers to create a flaky, crispy texture.",
+      "imageCode": "cro.png"
+    },
+    {
+      "name": "Marble Tea Cake",
+      "price": 146,
+      "category": "bakery",
+      "description": "Marble Tea Cake can replace all your other fancy cakes. Although made with premium quality ingredients, it has a very homely taste and can be a great accompaniment for that cup of chai you're having. With a soft, spongy and melt in your mouth texture, it is sure to become a staple at home",
+      "imageCode": "tea.png"
+    },
+    {
+      "name": "Cup Cake",
+      "price": 89,
+      "category": "bakery",
+      "description": "Cup Cake - Choco Chip is baked to perfection. Topped with choco chips, soft on the inside and with a crumbly texture, this sweet goes well during a mini snack break or can even be enjoyed as a dessert after a meal. You can also have it with a warm cup of coffee.",
+      "imageCode": "cup.png"
+    },
+    {
+      "name": "The Baker's Dozen Garlic Bread",
+      "price": 193,
+      "category": "bakery",
+      "description": "Garlic bread is the way it should be, made with 100% whole wheat (atta). Made without any added preservatives or chemicals, the whole wheat garlic bread is packed using a special German packaging technology ('fresh lock pack') that retains its oven-baked freshness.",
+      "imageCode": "gab.png"
+    },
+    {
+      "name": "Danish Blueberry",
+      "price": 172,
+      "category": "bakery",
+      "description": "Danish - Blueberry pack. Indulge in a gourmet experience with the goodness of blueberries wrapped in multiple layers of the danish pastry.",
+      "imageCode": "dab.jpg"
+    }
+  ],
+  "fish&meat": [
+    {
+      "name": "Prawn",
+      "price": 300,
+      "category": "fish & meat",
+      "description": "We take utmost care in selecting the best suppliers to provide you with high quality and succulent products. Every product is stored in our cold storage right until your doorstep ensuring freshness and utmost hygiene. Additionally, every product is packed using food grade plastic which provides a nourishing and wholesome environment. Chef special marination which is very authentic and has a fragnence which will delight your pallet, its a mixture of exotic flavour & Indian spices.",
+      "imageCode": "pra.jpg"
+    },
+    {
+      "name": "Rohu",
+      "price": 191,
+      "category": "fish & meat",
+      "description": "We take utmost care in selecting the best suppliers to provide you with high quality and succulent products. Every product is stored in our cold storage right until your doorstep ensuring freshness and utmost hygiene. Additionally, every product is packed using food grade plastic which provides a nourishing and wholesome environment. Chef special marination which is very authentic and has a fragnence which will delight your pallet, its a mixture of exotic flavour & Indian spices.",
+      "imageCode": "roh.jpg"
+    },
+    {
+      "name": "Pomfrey",
+      "price": 922,
+      "category": "fish & meat",
+      "description": "We take utmost care in selecting the best suppliers to provide you with high quality and succulent products. Every product is stored in our cold storage right until your doorstep ensuring freshness and utmost hygiene. Additionally, every product is packed using food grade plastic which provides a nourishing and wholesome environment. Chef special marination which is very authentic and has a fragnence which will delight your pallet, its a mixture of exotic flavour & Indian spices.",
+      "imageCode": "poe.jpg"
+    },
+    {
+      "name": "Steak",
+      "price": 580,
+      "category": "fish & meat",
+      "description": "We take utmost care in selecting the best suppliers to provide you with high quality and succulent products. Every product is stored in our cold storage right until your doorstep ensuring freshness and utmost hygiene. Additionally, every product is packed using food grade plastic which provides a nourishing and wholesome environment. Chef special marination which is very authentic and has a fragnence which will delight your pallet, its a mixture of exotic flavour & Indian spices.",
+      "imageCode": "ste.jpg"
+    },
+    {
+      "name": "Tilapia",
+      "price": 250,
+      "category": "fish & meat",
+      "description": "We take utmost care in selecting the best suppliers to provide you with high quality and succulent products. Every product is stored in our cold storage right until your doorstep ensuring freshness and utmost hygiene. Additionally, every product is packed using food grade plastic which provides a nourishing and wholesome environment. Chef special marination which is very authentic and has a fragnence which will delight your pallet, its a mixture of exotic flavour & Indian spices.",
+      "imageCode": "til.jpg"
+    }
+  ]
+}

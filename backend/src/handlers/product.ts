@@ -6,14 +6,15 @@ const model = new ProductModel();
 export default class ProductHandler {
   async create(_request: Request, response: Response) {
     try {
-      const { name, price, category, description, imageCode } = _request.body;
-      if (name && price) {
+      const { name, price, category, description, imagecode } = _request.body;
+      console.log(name, price, category, description, imagecode);
+      if (name && price && category && description && imagecode) {
         const product = await model.create({
           name,
           price: Number(price),
           category,
           description,
-          imageCode
+          imagecode
         });
         response
           .status(200)
@@ -25,24 +26,6 @@ export default class ProductHandler {
       }
     } catch (error) {
       response.status(500).json(`error while creating product: ${error}`);
-    }
-  }
-
-  async delete(_request: Request, response: Response) {
-    try {
-      const { id } = _request.params;
-      const rowCount = await model.delete(Number(id));
-      if (rowCount > 0) {
-        response
-          .status(200)
-          .json({ message: `Successfully deleted product with id: ${id}` });
-      } else {
-        response
-          .status(400)
-          .json({ message: `Couldn't delete product with id: ${id}` });
-      }
-    } catch (error) {
-      response.status(500).json(`error while deleting the product: ${error}`);
     }
   }
 
@@ -99,22 +82,4 @@ export default class ProductHandler {
       response.status(500).json(`error while fetching the product: ${error}`);
     }
   }
-
-  // async update(_request: Request, response: Response) {
-  //   try {
-  //     const { id } = _request.params;
-  //     const { name, price, category } = _request.body;
-
-  //     const product = await model.update({
-  //       id: Number(id),
-  //       name,
-  //       price: Number(price),
-  //       category,
-  //     });
-
-  //     response.status(200).json(product);
-  //   } catch (error) {
-  //     response.status(500).json(`error while updating the product: ${error}`);
-  //   }
-  // }
 }

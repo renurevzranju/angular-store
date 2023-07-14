@@ -21,7 +21,7 @@ export class ProductItemComponent {
       name: item.name,
       price: item.price,
       quantity: 1,
-      imageCode: item.imageCode,
+      imageCode: item.imagecode,
       total : item.price * 1
     }
     this.sharedService.addProduct(product);

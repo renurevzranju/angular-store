@@ -1,5 +1,5 @@
 <mat-card class="product-item">
-    <img mat-card-image src="../../../../assets/images/product/{{ product.id }}.png" alt="product image" />
+    <img mat-card-image src="../../../../assets/images/product/{{ product.imagecode }}" alt="product image" />
     <mat-card-content class="product-info">
         <div class="product-title" [routerLink]="['/products', product.id]">{{ product.name }}</div>
         <div class="product-price">

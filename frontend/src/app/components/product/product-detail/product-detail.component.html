@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-lg-6 col-12">
             <div class="product-img">
-                <img src="../../../../assets/images/product/{{productData?.imageCode}}.png" alt="product image" />
+                <img src="../../../../assets/images/product/{{productData?.imagecode}}" alt="product image" />
             </div>
         </div>
         <div class="col-lg-6 col-12">
@@ -11,7 +11,7 @@
                 <div class="product-price spacing">{{ 149 | currency : "INR" }}</div>
                 <div class="product-category spacing">
                     <strong class="d-inline-block pe-2">Category:</strong>
-                    <span>{{productData?.category}}</span>
+                    <span>{{productData?.category | titlecase }}</span>
                 </div>
                 <div class="product-desc spacing">
                     <strong class="d-inline-block pe-2">Description:</strong>

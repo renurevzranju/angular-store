@@ -19,7 +19,7 @@
 						</h4>
 						<ul class="p-0 m-0">
 							<li class="mt-3 category" *ngFor="let category of categoryList">
-								<span>{{ category }}</span>
+								<span [ngClass]="{'active': category == filterCategory}" (click)="filterProducts(category)">{{ category |  titlecase }}</span>
 							</li>
 						</ul>
 					</div>
@@ -34,7 +34,7 @@
 								filterPriceValue | currency : "INR" : "symbol" : "2.0"
 								}}</span>
 						</div>
-						<mat-slider class="price-value" [max]="5000" [min]="10" [step]="5" [discrete]="true">
+						<mat-slider class="price-value" [max]="500" [min]="10" [step]="5" [discrete]="true">
 							<input matSliderThumb [(ngModel)]="filterPriceValue" />
 						</mat-slider>
 					</div>

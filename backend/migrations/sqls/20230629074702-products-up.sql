@@ -4,5 +4,5 @@ CREATE TABLE products (
     price INTEGER NOT NULL,
     description VARCHAR,
     category VARCHAR(200) NOT NULL,
-    imageCode VARCHAR(50) NOT NULL
+    imagecode VARCHAR(50) NOT NULL
 );

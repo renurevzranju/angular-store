@@ -19,18 +19,16 @@ export class SecureInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if ( this.userToken ) {
       const tokenReq: HttpRequest<any> = request.clone( {
-        setHeaders: {
-          Authorization: `${ this.userToken }`
-        }
+        setHeaders: { Authorization: `Bearer ${ this.userToken }` }
       } );
       return next.handle( tokenReq );
     }
 
     return this.auth.getAccessTokenSilently({detailedResponse: true}).pipe(
       mergeMap(token => {
-        localStorage.setItem( 'accessToken', token.id_token);
+        localStorage.setItem( 'accessToken', token.access_token);
         const tokenReq = request.clone({
-          setHeaders: { Authorization: `${token.id_token}` }
+          setHeaders: { Authorization: `Bearer ${token.access_token}` }
         });
         return next.handle(tokenReq);
       }),

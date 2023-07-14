@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/helpers/product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -8,40 +9,21 @@ import { Product } from 'src/app/helpers/product';
 })
 export class ProductListComponent implements OnInit {
   productList: Product[] = [];
-  categoryList: string[] = ["Vegetables", "Fruits", "Snacks", "Personal Care"];
+  categoryList: string[] = ["vegetables", "fruits", "bakery", "beverages", "fish & meat"];
   filterPriceValue: number = 100;
   cartQuantity:number = 1;
+  filterCategory: string = "vegetables";
 
-  constructor() {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productList.push({
-      id: 1,
-      name: "Potato",
-      price: 33,
-      category: "Vegetables",
-      imageCode: "1",
-      description: "Potatoes are nutrient-dense, non-fattening and have reasonable amount of calories. Include them in your regular meals so that the body receives a good supply of carbohydrates, dietary fibers and essential minerals such as copper, magnesium, and iron. In India, potatoes are probably the second-most consumed vegetables after onions."
-    });
-    this.productList.push({
-      id: 2,
-      name: "Tomato",
-      price: 55.6,
-      category: "Vegetables",
-      imageCode: "1",
-      description: "Potatoes are nutrient-dense, non-fattening and have reasonable amount of calories. Include them in your regular meals so that the body receives a good supply of carbohydrates, dietary fibers and essential minerals such as copper, magnesium, and iron. In India, potatoes are probably the second-most consumed vegetables after onions."
-    })
-    this.productList.push({
-      id: 3,
-      name: "Papaya",
-      price: 89.65,
-      category: "Vegetables",
-      imageCode: "1",
-      description: "Potatoes are nutrient-dense, non-fattening and have reasonable amount of calories. Include them in your regular meals so that the body receives a good supply of carbohydrates, dietary fibers and essential minerals such as copper, magnesium, and iron. In India, potatoes are probably the second-most consumed vegetables after onions."
-    })
+    this.filterProducts(this.filterCategory);
   }
 
-  productDetails(id: number) {
-
+  filterProducts(category: string) {
+    this.filterCategory= category;
+    this.productService.getProductsByCategory(category).subscribe(products => {
+      this.productList = products;
+    });
   }
 }

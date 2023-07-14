@@ -5,6 +5,7 @@ import cors from "cors";
 
 const app: express.Application = express();
 const port = 5000;
+
 const corsOptions = {
   origin: "http://localhost:4200"
 };

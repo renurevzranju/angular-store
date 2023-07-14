@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/helpers/product';
 import { ActivatedRoute } from '@angular/router';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -12,25 +13,20 @@ export class ProductDetailComponent implements OnInit {
   quantity: number = 0;
   productData?: Product;
 
-  constructor(private _route: ActivatedRoute) {}
+  constructor(private _route: ActivatedRoute, private productService: ProductService) {}
 
   ngOnInit(): void{
     this._route.paramMap.subscribe(paramMap => {
       console.log(paramMap);
       this.productId = paramMap.get('id') ? Number(paramMap.get('id')) : 0;
-      this.getProductDetails(this.productId);
+      this.getProductDetails(String(this.productId));
     });
   }
 
-  getProductDetails(productId: number){
+  getProductDetails(productId: string){
     this.quantity = 1;
-    this.productData = {
-      id: productId,
-      name: "Papaya",
-      price: 55,
-      imageCode: "1",
-      description: "Potatoes are nutrient-dense, non-fattening and have reasonable amount of calories. Include them in your regular meals so that the body receives a good supply of carbohydrates, dietary fibers and essential minerals ",
-      category: "Fruits"
-    }
+    this.productService.getProductsByID(productId).subscribe(product => {
+      this.productData = product;
+    })
   }
 }

@@ -17,6 +17,7 @@ export class HeaderComponent {
   }
 
   logout() {
+    localStorage.clear();
     this.auth.logout({ logoutParams: { returnTo: this.doc.location.origin } });
   }
 }

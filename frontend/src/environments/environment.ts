@@ -17,9 +17,9 @@ export const environment = {
   auth: {
     domain,
     clientId,
-    audience,
     authorizationParams: {
       redirect_uri: window.location.origin,
+      audience: audience,
     },
     errorPath,
   },

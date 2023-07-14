@@ -6,7 +6,7 @@ export type Product = {
   price: number;
   category: string;
   description?: string;
-  imageCode: string;
+  imagecode: string;
 };
 
 export class ProductModel {
@@ -17,7 +17,7 @@ export class ProductModel {
    * @param {number} product.price price of the product.
    * @param {string} product.category category of the product.
    * @param {string} product.description description of the product.
-   * @param {string} product.imageCode image code of the product.
+   * @param {string} product.imagecode image code of the product.
    * @return {Product} Product object that was created.
    */
   async create(product: Product): Promise<Product> {
@@ -32,7 +32,7 @@ export class ProductModel {
         product.price,
         product.category,
         product.description,
-        product.imageCode
+        product.imagecode
       ]);
       const createdProduct = result.rows[0];
       connection.release();
@@ -42,43 +42,6 @@ export class ProductModel {
       throw new Error(
         `Unable to add new product ${product.name}. Error: ${err}`
       );
-    }
-  }
-
-  /**
-   * Delete product in the database
-   * @param {number} id Id of the user.
-   * @return {number} No of rows deleted.
-   */
-  async delete(id: number): Promise<number> {
-    try {
-      // @ts-ignore
-      const connection = await client.connect();
-      const sql = "DELETE FROM products WHERE id = ($1)";
-
-      const result = await connection.query(sql, [id]);
-      const count = result.rowCount;
-      connection.release();
-
-      return count;
-    } catch (err) {
-      throw new Error(`Unable to delete product ${id}. Error: ${err}`);
-    }
-  }
-
-  /**
-   * Delete all products in the database - Only for Testing purposes
-   */
-  async deleteAll(): Promise<void> {
-    try {
-      // @ts-ignore
-      const connection = await client.connect();
-      const sql = "DELETE FROM products";
-
-      await connection.query(sql);
-      connection.release();
-    } catch (err) {
-      throw new Error(`Unable to delete all products. Error: ${err}`);
     }
   }
 
@@ -160,37 +123,4 @@ export class ProductModel {
       throw new Error(`Unable to get product. Error: ${err}`);
     }
   }
-
-  /**
-   * Update product in the database
-   * @param {Product} product Product object to create.
-   * @param {number} product.id Id of the product.
-   * @param {string} product.name name of the product.
-   * @param {string} product.price price of the product.
-   * @param {string} product.category category of the product.
-   * @return {Product} Product object that was edited.
-   */
-  // async update(product: Product): Promise<Product> {
-  //   try {
-  //     // @ts-ignore
-  //     const connection = await client.connect();
-  //     const sql =
-  //       "UPDATE products set name = $2, price = $3, category = $4 WHERE id = $1 RETURNING *";
-
-  //     const result = await connection.query(sql, [
-  //       product.id,
-  //       product.name,
-  //       product.price,
-  //       product.category,
-  //     ]);
-  //     const editedProduct = result.rows[0];
-  //     connection.release();
-
-  //     return editedProduct;
-  //   } catch (err) {
-  //     throw new Error(
-  //       `Unable to update product ${product.name}. Error: ${err}`
-  //     );
-  //   }
-  // }
 }

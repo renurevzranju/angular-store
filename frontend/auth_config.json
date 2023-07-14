@@ -6,5 +6,5 @@
     "errorPath": "/error",
     "audience": "https://dev-revathi.us.auth0.com/api/v2/",
     "scope": "openid profile email",
-    "response_type": "token id_token code"
+    "response_type": "token"
 }

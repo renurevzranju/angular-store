@@ -1,22 +1,28 @@
 import express from "express";
-import authenticate from "../../middleware/authentication";
 import ProductHandler from "../../handlers/product";
+import { auth } from "express-oauth2-jwt-bearer";
+import dotenv from "dotenv";
 
 const products = express.Router();
 const productHandler = new ProductHandler();
 
+dotenv.config();
+
+const checkJwt = auth({
+  jwksUri: "https://dev-revathi.us.auth0.com/.well-known/jwks.json",
+  audience: process.env.AUTH0_API_AUDIENCE,
+  issuerBaseURL: "https://dev-revathi.us.auth0.com/",
+  tokenSigningAlg: "RS256"
+});
+
 //Create product
-products.post("/create", authenticate, (request, response) => {
+products.post("/create", checkJwt, (request, response) => {
   productHandler.create(request, response);
 });
 
-//Delete product based on product id
-products.delete("/:id", (request, response) => {
-  productHandler.delete(request, response);
-});
 
 //get products based on category
-products.get("/category/:category", (request, response) => {
+products.get("/category/:category", checkJwt, (request, response) => {
   productHandler.getProductsByCategory(request, response);
 });
 
@@ -34,10 +40,5 @@ products.get("/popular", (request, response) => {
 products.get("/:id", (request, response) => {
   productHandler.show(request, response);
 });
-
-//Edit product based on product id
-// products.put("/:id", (request, response) => {
-//   productHandler.update(request, response);
-// });
 
 export default products;

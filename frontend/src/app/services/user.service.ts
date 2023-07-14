@@ -8,18 +8,17 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  commonAPi: string = `${env.endpointURI}api/users/`;
+  commonAPI: string = `${env.endpointURI}api/users/`;
 
   constructor(private http: HttpClient) { }
 
   CheckUserExists(email: string): Observable<User[]> {
-    return this.http.get<User[]>(`${this.commonAPi}getUserByEmail/${email}`);
+    return this.http.get<User[]>(`${this.commonAPI}getUserByEmail/${email}`);
   }
 
   createUser(user:User): Observable<User>{
-    return this.http.post<User>(`${this.commonAPi}`, user).pipe(
+    return this.http.post<User>(`${this.commonAPI}`, user).pipe(
       map(result => {
-        console.log(result);
         return result;
       })
     );
