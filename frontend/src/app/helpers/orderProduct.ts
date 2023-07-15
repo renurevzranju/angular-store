@@ -1,8 +1,10 @@
 export interface OrderProduct{
-    id: number,
-    name: string,
+    id?: number,
+    product_id?: number,
+    order_id?: number,
+    name?: string,
     price: number,
     quantity: number,
-    total: number,
-    imageCode: string
+    total?: number,
+    imagecode?: string
 }

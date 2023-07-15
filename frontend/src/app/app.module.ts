@@ -34,8 +34,8 @@ import { SecureInterceptor } from './helpers/secure.interceptor';
     }),
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 10000,
-      preventDuplicates: true
+      timeOut: 5000,
+      closeButton: true
     }),
     FormsModule,
     ReactiveFormsModule,

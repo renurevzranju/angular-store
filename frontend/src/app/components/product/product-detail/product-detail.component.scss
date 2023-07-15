@@ -1,6 +1,4 @@
 #product-detail {
-    padding-bottom: 100px;
-
     .product-img{
         max-width: 100%;
         vertical-align: middle;
@@ -14,9 +12,6 @@
         font-weight: 600;
     }
 
-    // .product-category {
-    // }
-
     .product-desc {
         margin: 0 0 15px;
     }
@@ -26,7 +21,7 @@
 
         .spacing{
             padding: 20px 0;
-            border-bottom: 1px solid var(--border-color-12);
+            border-bottom: 1px solid var(--border-color-1);
         }
     }
 

@@ -9,10 +9,10 @@ const productHandler = new ProductHandler();
 dotenv.config();
 
 const checkJwt = auth({
-  jwksUri: "https://dev-revathi.us.auth0.com/.well-known/jwks.json",
+  jwksUri: process.env.AUTH0_JWKURI,
   audience: process.env.AUTH0_API_AUDIENCE,
-  issuerBaseURL: "https://dev-revathi.us.auth0.com/",
-  tokenSigningAlg: "RS256"
+  issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}/`,
+  tokenSigningAlg: process.env.AUTH0_ALGORITHM
 });
 
 //Create product

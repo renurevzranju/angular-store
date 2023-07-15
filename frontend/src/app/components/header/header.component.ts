@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { DOCUMENT } from '@angular/common';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ import { DOCUMENT } from '@angular/common';
 export class HeaderComponent {
   navbarCollapsed: boolean = false;
 
-  constructor(public auth: AuthService, @Inject(DOCUMENT) private doc: Document) { }
+  constructor(public auth: AuthService, @Inject(DOCUMENT) private doc: Document, public sharedService: SharedService) { }
 
   loginWithRedirect() {
     this.auth.loginWithRedirect({appState: { target: '/home'}});

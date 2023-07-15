@@ -6,7 +6,7 @@
 				<div class="product-list-view">
 					<div class="row">
 						<div class="col-xl-4 col-sm-6 col-6" *ngFor="let product of productList">
-							<app-product-item [product]="product"></app-product-item>
+							<app-product-item [product]="product" (addToCart)="addProductToCart($event)"></app-product-item>
 						</div>
 					</div>
 				</div>
@@ -34,9 +34,13 @@
 								filterPriceValue | currency : "INR" : "symbol" : "2.0"
 								}}</span>
 						</div>
-						<mat-slider class="price-value" [max]="500" [min]="10" [step]="5" [discrete]="true">
-							<input matSliderThumb [(ngModel)]="filterPriceValue" />
+						<mat-slider class="price-value" [max]="500" [min]="10" [step]="50" [discrete]="true">
+							<input matSliderThumb [(ngModel)]="filterPriceValue" (ngModelChange)="filterByPrice()"/>
 						</mat-slider>
+					</div>
+
+					<div class="image-ads">
+						<img class="w-100 img-responsive" src="../../../../assets/images/ads/product-ad.png" alt="ad">
 					</div>
 				</aside>
 			</div>

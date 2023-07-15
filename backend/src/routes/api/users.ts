@@ -16,7 +16,7 @@ const checkJwt = auth({
 });
 
 //Create user
-users.post("/", (request, response) => {
+users.post("/", checkJwt, (request, response) => {
   userHandler.create(request, response);
 });
 

@@ -117,20 +117,18 @@
             <div class="payment-method">
                 <h4 class="title">Payment Method</h4>
                 <mat-accordion>
-                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel  #panel1 [expanded]="true">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                <mat-radio-button [(ngModel)]="paymentMode" class="payment-mode"
-                                    value="cod"></mat-radio-button>
+                                <mat-radio-button  [checked]="panel1.expanded"></mat-radio-button>
                                 Cash on delivery</mat-panel-title>
                         </mat-expansion-panel-header>
                         <p>Pay with cash upon delivery.</p>
                     </mat-expansion-panel>
-                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel  #panel2>
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                <mat-radio-button [(ngModel)]="paymentMode" class="payment-mode"
-                                    value="paypal"></mat-radio-button>
+                                <mat-radio-button  [checked]="panel2.expanded"></mat-radio-button>
                                 PayPal
                             </mat-panel-title>
                         </mat-expansion-panel-header>
@@ -147,7 +145,7 @@
                         in our privacy policy.
                     </p>
                 </div>
-                <button class="custom-button place-order-btn">PLACE ORDER</button>
+                <button class="custom-button place-order-btn" [disabled]="!billingForm.valid || cartItems.length == 0" (click)="placeOrder()">PLACE ORDER</button>
             </div>
         </div>
         <div class="col-lg-6">
@@ -155,18 +153,22 @@
                 <h4 class="title">Cart Total</h4>
                 <table class="table table-striped">
                     <tbody>
+                        <tr *ngFor="let item of cartItems">
+                            <td>{{item.name}} <strong class="pl-1">x{{ item.quantity }}</strong></td>
+                            <td>{{item.total | currency : "INR"}}</td>
+                        </tr>
                         <tr>
                             <td>Cart SubTotal</td>
-                            <td>{{ 618 | currency : "INR" }}</td>
+                            <td>{{ cartValue | currency : "INR" }}</td>
                         </tr>
                         <tr>
                             <td>Shipping and Handing</td>
-                            <td>{{ 618 | currency : "INR" }}</td>
+                            <td>{{ 150 | currency : "INR" }}</td>
                         </tr>
                         <tr>
                             <td><strong>Order Total</strong></td>
                             <td>
-                                <strong>{{ 618 | currency : "INR" }}</strong>
+                                <strong>{{ (cartValue + 150) | currency : "INR" }}</strong>
                             </td>
                         </tr>
                     </tbody>
@@ -180,14 +182,15 @@
     <div class="checkout-container container">
         <div class="row text-center">
             <div class="col-12">
-                <img class="img-responsive text-center" src="../../../../assets/images/icons/imgs/delivery.gif" alt="Order placed" />
+                <img class="img-responsive text-center" src="../../../../assets/images/icons/delivery.gif"
+                    alt="Order placed" />
             </div>
             <div class="col-12">
-                <b class="fs-1">Order Successfully Placed.</b>
-                <p>
-                    Hi {{userName}}!, Thank you for your order! <br>
-                    Your order is being processed.
+                <b class="fs-1"><i class="bi bi-check-circle px-2 successIcon"></i> Order Successfully Placed.</b>
+                <p class="pt-3 fs-5">
+                    Hi {{userName}}!, Thank you for your order!
                 </p>
+                <p class="fs-5">Your order is being processed. Meanwhile you can continue shopping from <a class="successIcon" routerLink="/products">here</a>.</p>
             </div>
         </div>
     </div>

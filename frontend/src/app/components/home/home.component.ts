@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
 
   checkForUser(user: User){
     this.userService.CheckUserExists(user.email).subscribe((response: any) => {
+      localStorage.setItem('user', response.id);
       if(!response){
         this.createUser(user);
       }
@@ -43,6 +44,7 @@ export class HomeComponent implements OnInit {
   createUser(user: User){
     this.userService.createUser(user).subscribe((response: User) => {
       this.sharedService.setUserData(JSON.stringify(response));
+      localStorage.setItem('user', (response.id as number).toString());
     });
   }
 

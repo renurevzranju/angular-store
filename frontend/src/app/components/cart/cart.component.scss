@@ -1,5 +1,5 @@
 .cart-container {
-    padding-bottom: 120px;
+    padding: 2% 0 0;
 
     .cart-total {
         margin-top: 50px;
@@ -23,5 +23,20 @@
                 border-top: 1px solid #dee2e6;
             }
         }
+    }
+}
+
+.shortcut-link{
+    color: var(--custom__secondary-color);
+}
+
+.mat-column-delete{
+    width: 1%;
+    padding: 0;
+    justify-content: space-around;
+
+    &:hover{
+        cursor: pointer;
+        color: var(--custom__secondary-color-3);
     }
 }

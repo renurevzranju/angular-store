@@ -1,4 +1,4 @@
-<div class="container" *ngIf="isCartEmpty; else cartContent">
+<div class="container empty-cart" *ngIf="isCartEmpty; else cartContent">
   <div class="row text-center">
     <div class="col-12">
       <img
@@ -9,9 +9,9 @@
     </div>
     <div class="col-12">
       <b class="fs-1">Your cart is empty</b>
-      <p>
+      <p class="fs-5 py-4">
         Looks like you have not added anything to your cart. Go ahead & explore
-        the top products.
+        the top products from <a class="shortcut-link" routerLink="/products">here</a>.
       </p>
     </div>
   </div>
@@ -22,18 +22,16 @@
     <div class="row">
       <div class="col-lg-12">
         <mat-table [dataSource]="dataSource" class="mat-elevation-z0">
-          <!-- Position Column -->
           <ng-container matColumnDef="id">
-            <!-- <mat-header-cell *matHeaderCellDef> No. </mat-header-cell> -->
-            <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+            <mat-cell *matCellDef="let element; let i = index;"> {{ i + 1 }} </mat-cell>
           </ng-container>
 
-          <!-- Name Column -->
-          <ng-container matColumnDef="imageCode">
-            <!-- <mat-header-cell *matHeaderCellDef> Name </mat-header-cell> -->
+          <ng-container matColumnDef="imagecode">
+            <mat-header-cell *matHeaderCellDef> Product </mat-header-cell>
             <mat-cell *matCellDef="let element">
               <img
-                src="../../../assets/images/product/{{ element.imageCode }}.png"
+                src="../../../assets/images/product/{{ element.imagecode }}"
                 alt="product"
                 height="100"
                 width="100"
@@ -41,39 +39,47 @@
             </mat-cell>
           </ng-container>
 
-          <!-- Name Column -->
           <ng-container matColumnDef="name">
-            <!-- <mat-header-cell *matHeaderCellDef> Name </mat-header-cell> -->
-            <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <a class="shortcut-link" [routerLink]="['/products', element.product_id]">{{ element.name }}</a>
+
+            </mat-cell>
           </ng-container>
 
-          <!-- Weight Column -->
           <ng-container matColumnDef="price">
-            <!-- <mat-header-cell *matHeaderCellDef> Price </mat-header-cell> -->
+            <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
             <mat-cell *matCellDef="let element">
               {{ element.price | currency : "INR" }}
             </mat-cell>
           </ng-container>
 
-          <!-- Symbol Column -->
           <ng-container matColumnDef="quantity">
-            <!-- <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell> -->
+            <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
             <mat-cell *matCellDef="let element">
               {{ element.quantity }}
             </mat-cell>
           </ng-container>
 
           <ng-container matColumnDef="total">
-            <!-- <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell> -->
+            <mat-header-cell *matHeaderCellDef> Total Cost </mat-header-cell>
             <mat-cell *matCellDef="let element">
               {{ element.total | currency : "INR" }}
             </mat-cell>
           </ng-container>
 
-          <!-- <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row> -->
-          <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          <ng-container matColumnDef="delete">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element">
+              <i class="bi bi-trash3" (click)="deleteProduct(element.id, element.name)"></i>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns; let i = index"></mat-row>
         </mat-table>
       </div>
+
       <div class="col-lg-12">
         <div class="cart-total">
           <h4>Cart Total</h4>
@@ -81,16 +87,16 @@
             <tbody>
               <tr>
                 <td>Cart SubTotal</td>
-                <td>{{ 618 | currency : "INR" }}</td>
+                <td>{{ totalCartValue | currency : "INR" }}</td>
               </tr>
               <tr>
                 <td>Shipping and Handing</td>
-                <td>{{ 618 | currency : "INR" }}</td>
+                <td>{{ 150 | currency : "INR" }}</td>
               </tr>
               <tr>
                 <td><strong>Order Total</strong></td>
                 <td>
-                  <strong>{{ 618 | currency : "INR" }}</strong>
+                  <strong>{{ (totalCartValue + 150) | currency : "INR" }}</strong>
                 </td>
               </tr>
             </tbody>

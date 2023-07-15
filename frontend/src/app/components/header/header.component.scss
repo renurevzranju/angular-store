@@ -46,7 +46,7 @@
           font-weight: 700;
           font-family: var(--custom__heading-font);
 
-          &:hover{
+          &:hover {
             color: var(--custom__secondary-color) !important;
           }
         }
@@ -57,7 +57,7 @@
       margin-left: 10px;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: center;
       font-weight: bold;
 
       .icon {
@@ -65,9 +65,10 @@
       }
 
       .header-search:hover,
-      .icon > a:hover{
+      .icon > a:hover {
         background-color: var(--custom__secondary-color) !important;
         color: var(--white) !important;
+        cursor: pointer;
       }
 
       .header-search,
@@ -169,7 +170,7 @@
       input {
         margin-bottom: 0;
       }
-      button{
+      button {
         background-color: transparent;
         position: absolute;
         right: 0;
@@ -181,12 +182,12 @@
       }
     }
 
-    .menu-list{
+    .menu-list {
       ul {
         margin: 0;
         padding: 0;
         list-style: none;
-        li{
+        li {
           position: relative;
           a {
             color: var(--custom__heading-color);
@@ -198,7 +199,7 @@
       }
     }
 
-    .menu-buttons{
+    .menu-buttons {
       border-top: 1px solid var(--border-color-1);
       padding: 5px 0px 20px;
       margin: 30px 0;
@@ -206,7 +207,7 @@
       ul > li {
         display: block;
         margin-top: 1rem;
-        .btn-icon{
+        .btn-icon {
           width: 50px;
           display: inline-block;
           height: 50px;
@@ -218,12 +219,12 @@
       }
     }
 
-    .social-media-menu{
-      ul > li{
+    .social-media-menu {
+      ul > li {
         list-style: none;
         display: inline-block;
         margin-right: 10px;
-         a {
+        a {
           background-color: var(--section-bg-1);
           color: var(--custom__paragraph-color);
           display: block;
@@ -242,8 +243,10 @@
 }
 
 @media (max-width: 479px) {
-  .mobile-view {
-    width: 300px;
+  .header-search,
+  a {
+    border-radius: 0% !important;
+    margin: 25% 0 2% !important;
   }
 }
 

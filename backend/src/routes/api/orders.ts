@@ -7,15 +7,20 @@ dotenv.config();
 const orders = express.Router();
 const orderHandler = new OrderHandler();
 const checkJwt = auth({
-  jwksUri: "https://dev-revathi.us.auth0.com/.well-known/jwks.json",
+  jwksUri: process.env.AUTH0_JWKURI,
   audience: process.env.AUTH0_API_AUDIENCE,
-  issuerBaseURL: "https://dev-revathi.us.auth0.com/",
-  tokenSigningAlg: "RS256"
+  issuerBaseURL: `https://${process.env.AUTH0_DOMAIN}/`,
+  tokenSigningAlg: process.env.AUTH0_ALGORITHM
 });
 
 //Add Products to an order
 orders.post("/addProduct", checkJwt, (request, response) => {
   orderHandler.addProduct(request, response);
+});
+
+//Cart Items based on order id
+orders.get("/cart/:id", checkJwt, (request, response) => {
+  orderHandler.getCartItems(request, response);
 });
 
 //Create order
@@ -47,8 +52,23 @@ orders.get("/:id", checkJwt, (request, response) => {
   orderHandler.show(request, response);
 });
 
+//Get product based on order id
+orders.get("/product/:orderID/:productID", checkJwt, (request, response) => {
+  orderHandler.getExistingProduct(request, response);
+});
+
+//Delete product based on order id
+orders.delete("/deleteProduct/:orderProductID", checkJwt, (request, response) => {
+  orderHandler.deleteProduct(request, response);
+});
+
 //Update status of the order
-orders.put("/status/:user_id", checkJwt, (request, response) => {
+orders.put("/updateQuantity", checkJwt, (request, response) => {
+  orderHandler.updateProductQuantity(request, response);
+});
+
+//Update status of the order
+orders.put("/status", checkJwt, (request, response) => {
   orderHandler.updateOrderStatus(request, response);
 });
 

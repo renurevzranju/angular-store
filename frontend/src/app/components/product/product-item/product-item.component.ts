@@ -1,8 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { OrderProduct } from 'src/app/helpers/orderProduct';
 import { Product } from 'src/app/helpers/product';
-import { SharedService } from 'src/app/services/shared.service';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-item',
@@ -11,20 +9,21 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProductItemComponent {
   @Input() product!: Product;
+  @Output() addToCart: EventEmitter<any> = new EventEmitter();
 
-  constructor(public sharedService: SharedService,
-    private toastr: ToastrService) { }
+  constructor() { }
 
-  addToCart(item: Product): void {
+  addProductToCart(item: Product){
+    let orderID = localStorage.getItem('orderID');
     let product: OrderProduct = {
-      id: item.id,
+      order_id: orderID ? Number(orderID) : 0,
+      product_id: item.id,
       name: item.name,
       price: item.price,
       quantity: 1,
-      imageCode: item.imagecode,
+      imagecode: item.imagecode,
       total : item.price * 1
     }
-    this.sharedService.addProduct(product);
-    this.toastr.success('Successfully added to your Cart', product.name);
+    this.addToCart.emit(product);
   }
 }

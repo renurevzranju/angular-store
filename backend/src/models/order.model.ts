@@ -58,7 +58,7 @@ export class OrderModel {
         "INSERT INTO orders (status, user_id) VALUES($1, $2) RETURNING *";
 
       const result = await connection.query(sql, [
-        order.status,
+        "active",
         Number(order.user_id),
       ]);
       const createdOrder = result.rows[0];
@@ -104,6 +104,31 @@ export class OrderModel {
   }
 
   /**
+   * Delete product in order in the database
+   * @param {number} orderProductID Id of the product in the order_product table.
+   * @return {number} No of rows deleted.
+   */
+  async deleteProduct(orderProductID: number): Promise<number> {
+    try {
+      // @ts-ignore
+      const connection = await client.connect();
+      const sql = "DELETE FROM order_products WHERE id = ($1)";
+
+      await connection.query(sql, [orderProductID]);
+
+      const deleteOrderQuery = "DELETE FROM orders WHERE id = ($1)";
+      const order = await connection.query(deleteOrderQuery, [orderProductID]);
+      const count = order.rowCount;
+      console.log(count);
+      connection.release();
+
+      return count;
+    } catch (err) {
+      throw new Error(`Unable to delete product from order ${orderProductID}. ${err}`);
+    }
+  }
+
+  /**
    * Delete order in the database - For testing purpose
    */
   async deleteAll(): Promise<void> {
@@ -139,10 +164,59 @@ export class OrderModel {
       const result = await connection.query(sql);
       connection.release();
 
+      if(status === "active"){
+        return result.rows[0];
+      }
+
       return result.rows;
     } catch (err) {
       throw new Error(
         `Unable to get orders based on status[${status}]. Error: ${err}`
+      );
+    }
+  }
+
+  /**
+   * Get order based on order_id and product_id from the order_products table in the database
+   * @param {number} order_id status of the order to be fetched.
+   * @param {number} product_id order to be fetched based on userId.
+   * @return {Order[]} List of order object based on the status passed.
+   */
+  async getExistingProduct(order_id: number, product_id: number): Promise<Order[]> {
+    try {
+      // @ts-ignore
+      const connection = await client.connect();
+      const sql = `SELECT * FROM order_products WHERE order_id = ${order_id} AND product_id = ${product_id}`;
+
+      const result = await connection.query(sql);
+      connection.release();
+
+      return result.rows;
+    } catch (err) {
+      throw new Error(
+        `Unable to get orders based on order_id[${order_id}] and product_id[${product_id}]. Error: ${err}`
+      );
+    }
+  }
+
+  /**
+   * Get products based on order_id and product_id from the order_products table in the database
+   * @param {number} order_id status of the order to be fetched.
+   * @return {OrderProduct[]} List of order object based on the status passed.
+   */
+  async getCartItems(order_id: number): Promise<OrderProduct[]> {
+    try {
+      // @ts-ignore
+      const connection = await client.connect();
+      const sql = `SELECT op.id, p.name, op.order_id, op.product_id, op.quantity, p.price, p.imagecode FROM order_products op INNER JOIN products p ON op.product_id = p.id WHERE op.order_id = ${order_id}`;
+
+      const result = await connection.query(sql);
+      connection.release();
+
+      return result.rows;
+    } catch (err) {
+      throw new Error(
+        `Unable to get products based on order_id[${order_id}] . Error: ${err}`
       );
     }
   }
@@ -187,6 +261,27 @@ export class OrderModel {
   }
 
   /**
+   * update order_product quantity in the database
+   * @param {number} id id of the order_product.
+   * @param {number} quantity quantity of the order_product.
+   * @return {OrderProduct} returns Order object.
+   */
+  async updateQuantity(id: number, quantity: number): Promise<Order> {
+    try {
+      // @ts-ignore
+      const connection = await client.connect();
+      const sql = "UPDATE order_products SET quantity = ($1) WHERE id=($2) RETURNING *";
+
+      const result = await connection.query(sql, [quantity, id]);
+      connection.release();
+
+      return result.rows[0];
+    } catch (err) {
+      throw new Error(`Unable to update the order. Error: ${err}`);
+    }
+  }
+
+  /**
    * update order status in the database
    * @param {Order} order Order to update
    * @param {number} order.id id of the order.
@@ -205,7 +300,7 @@ export class OrderModel {
 
       return result.rows[0];
     } catch (err) {
-      throw new Error(`Unable to update the order. Error: ${err}`);
+      throw new Error(`Unable to update the order status. Error: ${err}`);
     }
   }
 }

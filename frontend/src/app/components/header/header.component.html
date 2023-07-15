@@ -11,7 +11,7 @@
             </div>
           </div>
         </div>
-        <div class="col header-menu-column">
+        <div class="col header-menu-column d-none d-md-block d-sm-none d-xs-none d-xl-block">
           <nav>
             <div class="main-menu">
               <ul>
@@ -25,91 +25,52 @@
             </div>
           </nav>
         </div>
-        <div class="col-2 header-options">
+
+        <div class="col-sm-5 col-md-2 header-options">
+          <div class="icon mini-cart-icon d-md-none d-xl-none">
+            <a routerLink="/home" title="Home">
+              <i class="bi bi-house-door"></i>
+            </a>
+          </div>
+          <div class="icon mini-cart-icon d-md-none d-xl-none">
+            <a routerLink="/products" title="Shop">
+              <i class="bi bi-shop"></i>
+            </a>
+          </div>
           <!-- user-menu -->
           <div class="icon user-icon" *ngIf="auth.isAuthenticated$ | async; else loggedOut">
-            <a class="pe-auto" (click)="logout()">
+            <a (click)="logout()">
               <i class="bi bi-person"></i>
             </a>
           </div>
           <ng-template #loggedOut>
             <div class="icon user-icon">
-              <a class="pe-auto" (click)="loginWithRedirect()">
+              <a title="Login" (click)="loginWithRedirect()">
                 <i class="bi bi-person-exclamation"></i>
               </a>
           </div>
           </ng-template>
           <!-- mini-cart -->
           <div class="icon mini-cart-icon">
-            <a routerLink="/cart" class="toggle">
+            <a routerLink="/cart" title="Cart">
               <i class="bi bi-cart3"></i>
-              <sup>2</sup>
+              <sup *ngIf="auth.isAuthenticated$ | async">{{sharedService.cartCount}}</sup>
             </a>
           </div>
+
+
           <!-- mini-cart -->
           <!-- Mobile Menu Button -->
-          <div class="mobile-menu-toggle d-xl-none">
+          <!-- <div class="mobile-menu-toggle d-xl-none">
             <a href="#mobile-menu" class="toggle">
               <i class="bi bi-list"></i>
             </a>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
   </div>
 </header>
+<div class="breadcrumbs">
 
-<!-- Mobile Menu -->
-<div id="mobile-menu" class="mobile-view mobile-menu d-none">
-  <div class="menu-inner scrollbar">
-      <div class="menu-header">
-          <div class="logo navbar-brand">
-              <a href="index.html">
-                <img src="../../../assets/images/logo.png" alt="Logo">
-              </a>
-          </div>
-          <button class="mobile-menu-close">×</button>
-      </div>
-      <div class="search-form">
-          <form action="#">
-              <input type="text" placeholder="Search...">
-              <button><i class="bi bi-search"></i></button>
-          </form>
-      </div>
-      <div class="menu-list">
-          <ul>
-            <li><a routerLink="/home">Home</a></li>
-            <li><a routerLink="/product">Shop</a></li>
-          </ul>
-      </div>
-      <div class="menu-buttons">
-          <ul class="p-0 m-0">
-              <li>
-                  <a title="My Account">
-                      <span class="btn-icon">
-                          <i class="bi bi-person"></i>
-                      </span>
-                      My Account
-                  </a>
-              </li>
-              <li>
-                  <a title="Shopping Cart">
-                      <span class="btn-icon">
-                          <i class="bi bi-cart3"></i>
-                          <sup>5</sup>
-                      </span>
-                      Shopping Cart
-                  </a>
-              </li>
-          </ul>
-      </div>
-      <div class="social-media-menu">
-          <ul class="p-0 m-0">
-              <li><a href="#" title="Facebook"><i class="bi bi-facebook"></i></a></li>
-              <li><a href="#" title="Twitter"><i class="bi bi-twitter"></i></a></li>
-              <li><a href="#" title="Linkedin"><i class="bi bi-linkedin"></i></a></li>
-              <li><a href="#" title="Instagram"><i class="bi bi-instagram"></i></a></li>
-          </ul>
-      </div>
-  </div>
 </div>
