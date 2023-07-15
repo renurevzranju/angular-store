@@ -18,7 +18,7 @@ Store is a single-page application built using Angular for frontend and Express 
   git clone https://github.com/renurevzranju/angular-store.git
 ```
 - Follow the README in backend folder for creating database and connecting to the server.
-- Use the [product.json](/frontend/package.json) to create the project in the database for each category. Access token is not required for this step. Also make sure not to alter the data while creating the product.
+- Use the [product.json](/frontend/products.json) to create the project in the database for each category. Access token is not required for this step. Also make sure not to alter the data while creating the product.
 - Once the product is created, follow the README in frontend folder to start the angular application.
 - Once both the setup is done. Your good to go!
 
