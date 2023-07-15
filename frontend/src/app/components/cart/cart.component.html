@@ -1,11 +1,7 @@
 <div class="container empty-cart" *ngIf="isCartEmpty; else cartContent">
   <div class="row text-center">
     <div class="col-12">
-      <img
-        class="img-responsive text-center"
-        src="../../../assets/images/empty-cart.png"
-        alt="Empty Cart"
-      />
+      <img class="img-responsive text-center" src="../../../assets/images/empty-cart.png" alt="Empty Cart" />
     </div>
     <div class="col-12">
       <b class="fs-1">Your cart is empty</b>
@@ -30,12 +26,8 @@
           <ng-container matColumnDef="imagecode">
             <mat-header-cell *matHeaderCellDef> Product </mat-header-cell>
             <mat-cell *matCellDef="let element">
-              <img
-                src="../../../assets/images/product/{{ element.imagecode }}"
-                alt="product"
-                height="100"
-                width="100"
-              />
+              <img src="../../../assets/images/product/{{ element.imagecode }}" alt="product" height="100"
+                width="100" />
             </mat-cell>
           </ng-container>
 
@@ -43,7 +35,6 @@
             <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
             <mat-cell *matCellDef="let element">
               <a class="shortcut-link" [routerLink]="['/products', element.product_id]">{{ element.name }}</a>
-
             </mat-cell>
           </ng-container>
 

@@ -46,5 +46,6 @@ User has to provide the billing address details in the form which will be valida
 !['checkout'](../frontend/src/assets/images/readme/checkoutpage.png)
 
 Once the order is placed, the cart will be emptied and the order status will be updated accordingly.
+
 !['place order'](../frontend/src/assets/images/readme/orderplaced.png)
 

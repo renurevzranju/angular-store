@@ -12,7 +12,7 @@ import { SharedService } from 'src/app/services/shared.service';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit{
+export class CheckoutComponent implements OnInit {
   panelOpenState: boolean = false;
   billingForm: FormGroup;
   countries: String[] = ["Australia", "Canada", "China", "India", "Morocco", "Saudi Arabia", "United Kingdom (UK)", "United States (US)"];
@@ -35,11 +35,20 @@ export class CheckoutComponent implements OnInit{
   cartValue: number = 0;
   cartItems: OrderProduct[] = [];
 
+  /**
+   * @constructor
+   * @param {FormBuilder} fb Angular Reactive Form Builder.
+   * @param {SharedService} sharedService To track and increase Cart Count
+   * @param {AuthService} auth User Details like name and email from Auth0
+   * @param {ToastrService} toastr Display success and error message
+   * @param {OrderService} orderService API Interaction to persist the data
+  */
   constructor(private fb: FormBuilder,
     public sharedService: SharedService,
     private auth: AuthService,
     private orderService: OrderService,
     private toastr: ToastrService) {
+
     let emailRegex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let phoneRegex: RegExp = /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
@@ -56,7 +65,7 @@ export class CheckoutComponent implements OnInit{
       validate: '',
     });
     this.auth.user$.subscribe((profile) => {
-      if(profile){
+      if (profile) {
         const response = profile;
         this.userProfileJson = JSON.stringify(response, null, 2);
         this.billingForm.get("email")?.patchValue(response.email);
@@ -64,17 +73,24 @@ export class CheckoutComponent implements OnInit{
         this.userName = response.name as string;
       }
     });
-
-    this.cartValue = this.sharedService.cartValue;
   }
 
-  ngOnInit(): void{
+  /**
+   * @ngOnInit
+   * To populate the cart items for users to verify before checkout
+   * @returns void
+  */
+  ngOnInit(): void {
     this.getCartItems();
   }
 
-  getCartItems(){
+  /**
+   * Interacts with Express API and fetches the cart items
+   * @returns void
+  */
+  getCartItems(): void {
     let orderID = localStorage.getItem('orderID') || 0;
-    if(orderID != 0){
+    if (orderID != 0) {
       this.orderService.getAllProducts(orderID as number).subscribe(products => {
         let totalCartValue = 0;
         let data: OrderProduct[] = [];
@@ -84,7 +100,7 @@ export class CheckoutComponent implements OnInit{
             name: item.name,
             product_id: item.product_id,
             price: item.price,
-            quantity:item.quantity,
+            quantity: item.quantity,
             total: item.price * item.quantity,
             order_id: item.order_id,
             imagecode: item.imagecode
@@ -98,11 +114,12 @@ export class CheckoutComponent implements OnInit{
     }
   }
 
-  onSubmit() {
-    alert('Thanks for submitting! Data: ');
-  }
-
-  placeOrder(){
+  /**
+   * Interacts with Express API and updates the status of the order to completed
+   * Gets the OrderID and UserID from local storage
+   * @returns void
+  */
+  placeOrder(): void {
     let orderID = localStorage.getItem('orderID') || 0;
     let userID = localStorage.getItem('user') || 0;
     let order: Order = {
@@ -110,7 +127,7 @@ export class CheckoutComponent implements OnInit{
       status: "completed",
       user_id: Number(userID)
     }
-    if(orderID != 0 && userID != 0){
+    if (orderID != 0 && userID != 0) {
       this.orderService.placeOrder(order).subscribe(response => {
         localStorage.removeItem("orderID");
         this.orderPlaced = true;
@@ -118,9 +135,8 @@ export class CheckoutComponent implements OnInit{
         this.billingForm.reset();
       });
     }
-    else{
+    else {
       this.toastr.error("Something went wrong. Contact the administrator", "Error");
     }
-
   }
 }

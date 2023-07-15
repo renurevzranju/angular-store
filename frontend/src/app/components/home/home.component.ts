@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
       if(profile){
         const response = profile;
         this.userProfileJson = JSON.stringify(response, null, 2);
-        this.sharedService.setUserData(JSON.stringify(response, null, 2));
         let userData = {
           user_name: response?.name || "",
           email: response?.email || ""
@@ -43,7 +42,6 @@ export class HomeComponent implements OnInit {
 
   createUser(user: User){
     this.userService.createUser(user).subscribe((response: User) => {
-      this.sharedService.setUserData(JSON.stringify(response));
       localStorage.setItem('user', (response.id as number).toString());
     });
   }
