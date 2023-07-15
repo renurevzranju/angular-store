@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
       if (profile) {
         const response = profile;
         this.userProfileJson = JSON.stringify(response, null, 2);
-        let userData = {
+        const userData = {
           user_name: response?.name || "",
           email: response?.email || ""
         };

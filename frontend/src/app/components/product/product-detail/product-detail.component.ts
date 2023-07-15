@@ -52,7 +52,7 @@ export class ProductDetailComponent implements OnInit {
  */
   ngOnInit(): void {
     this._route.paramMap.subscribe(paramMap => {
-      let productId = paramMap.get('id') ? Number(paramMap.get('id')) : 0;
+      const productId = paramMap.get('id') ? Number(paramMap.get('id')) : 0;
       this.getProductDetails(productId);
       this.getActiveOrderID();
     });
@@ -96,7 +96,7 @@ export class ProductDetailComponent implements OnInit {
  */
   addToCart(): void {
     this.productOrderData.quantity = this.quantity;
-    let userID = localStorage.getItem('user') || 0;
+    const userID = localStorage.getItem('user') || 0;
     if (this.activeOrderID != 0) {
       this.addProductToOrder(this.productOrderData);
     }
@@ -192,9 +192,9 @@ export class ProductDetailComponent implements OnInit {
  * @returns void Returns nothing
  */
   getActiveOrderID(): void {
-    let userID = localStorage.getItem('user') || 0;
+    const userID = localStorage.getItem('user') || 0;
     if (userID != 0) {
-      this.orderService.getActiveOrderDetailsForUser(userID as number).subscribe(order => {
+      this.orderService.getActiveOrderDetailsForUser(userID as unknown as number).subscribe(order => {
         if (order && order.id) {
           this.activeOrderID = order.id;
           this.productOrderData.order_id = order.id;

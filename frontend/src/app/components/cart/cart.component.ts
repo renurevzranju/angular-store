@@ -62,10 +62,10 @@ export class CartComponent implements OnInit {
    * @returns void
    */
   getOrderID(): void {
-    let userID = localStorage.getItem('user') || 0;
+    const userID = localStorage.getItem('user') || 0;
     if (userID !== 0) {
       this.orderService
-        .getActiveOrderDetailsForUser(userID as number)
+        .getActiveOrderDetailsForUser(userID as unknown as number)
         .subscribe(
           (order) => {
             if (order) {

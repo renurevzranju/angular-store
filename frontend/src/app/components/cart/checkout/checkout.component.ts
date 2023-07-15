@@ -49,9 +49,9 @@ export class CheckoutComponent implements OnInit {
     private orderService: OrderService,
     private toastr: ToastrService) {
 
-    let emailRegex: RegExp =
+    const emailRegex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    let phoneRegex: RegExp = /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
+    const phoneRegex: RegExp = /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
     this.billingForm = fb.group({
       email: ["", [Validators.required, Validators.pattern(emailRegex)]],
       firstName: [null, Validators.required],
@@ -89,9 +89,9 @@ export class CheckoutComponent implements OnInit {
    * @returns void
   */
   getCartItems(): void {
-    let orderID = localStorage.getItem('orderID') || 0;
+    const orderID = localStorage.getItem('orderID') || 0;
     if (orderID != 0) {
-      this.orderService.getAllProducts(orderID as number).subscribe(products => {
+      this.orderService.getAllProducts(orderID as unknown as number).subscribe(products => {
         let totalCartValue = 0;
         let data: OrderProduct[] = [];
         products.forEach(item => {
@@ -120,9 +120,9 @@ export class CheckoutComponent implements OnInit {
    * @returns void
   */
   placeOrder(): void {
-    let orderID = localStorage.getItem('orderID') || 0;
-    let userID = localStorage.getItem('user') || 0;
-    let order: Order = {
+    const orderID = localStorage.getItem('orderID') || 0;
+    const userID = localStorage.getItem('user') || 0;
+    const order: Order = {
       id: orderID as number,
       status: "completed",
       user_id: Number(userID)

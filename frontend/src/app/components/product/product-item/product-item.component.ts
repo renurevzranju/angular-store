@@ -18,8 +18,8 @@ export class ProductItemComponent {
  * @returns void Returns nothing
  */
   addProductToCart(item: Product) {
-    let orderID = localStorage.getItem('orderID');
-    let product: OrderProduct = {
+    const orderID = localStorage.getItem('orderID');
+    const product: OrderProduct = {
       order_id: orderID ? Number(orderID) : 0,
       product_id: item.id,
       name: item.name,

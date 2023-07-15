@@ -60,13 +60,13 @@ export class ProductListComponent implements OnInit {
  * @returns void Returns nothing
  */
   addProductToCart(product: OrderProduct): void {
-    let userID = localStorage.getItem('user') || 0;
-    let orderID = localStorage.getItem('orderID');
+    const userID = localStorage.getItem('user') || 0;
+    const orderID = localStorage.getItem('orderID');
 
     if (orderID) {
       this.addProductToOrder(product);
     } else if (userID !== 0) {
-      this.orderService.getActiveOrderDetailsForUser(userID as number).subscribe(order => {
+      this.orderService.getActiveOrderDetailsForUser(userID as unknown as number).subscribe(order => {
         if (!order || order.id == undefined) {
           this.createNewOrder(Number(userID), product)
         }
