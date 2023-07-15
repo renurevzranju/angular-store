@@ -30,7 +30,7 @@
         margin: 0;
       }
 
-      li {
+      .menu-icon {
         display: inline-block;
         position: relative;
         margin: 0 20px 0 0;
@@ -63,14 +63,12 @@
         margin-right: 10px;
       }
 
-      .header-search:hover,
       .icon > a:hover {
         background-color: var(--custom__secondary-color) !important;
         color: var(--white) !important;
         cursor: pointer;
       }
 
-      .header-search,
       a {
         display: block;
         height: 50px;
