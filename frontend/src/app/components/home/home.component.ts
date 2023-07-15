@@ -20,9 +20,12 @@ export class HomeComponent implements OnInit {
    * @param {Router} route Route to the products page based on the category
    * @param {UserService} userService API Interaction to persist the user data
    */
-  constructor(public sharedService: SharedService,
-    private route: Router, public auth: AuthService,
-    private userService: UserService) { }
+  constructor(
+    public sharedService: SharedService,
+    private route: Router,
+    public auth: AuthService,
+    private userService: UserService
+  ) {}
 
   /**
    * @ngOnInit
@@ -50,9 +53,10 @@ export class HomeComponent implements OnInit {
    */
   checkForUser(user: User): void {
     this.userService.CheckUserExists(user.email).subscribe((response: any) => {
-      localStorage.setItem('user', response.id);
       if (!response) {
         this.createUser(user);
+      } else {
+        localStorage.setItem("user", response.id);
       }
     });
   }
@@ -64,7 +68,7 @@ export class HomeComponent implements OnInit {
    */
   createUser(user: User): void {
     this.userService.createUser(user).subscribe((response: User) => {
-      localStorage.setItem('user', (response.id as number).toString());
+      localStorage.setItem("user", (response.id as number).toString());
     });
   }
 

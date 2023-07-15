@@ -22,7 +22,7 @@ export class ProductService {
  * @return {Product[]} Returns list of products
  */
   getProductsByCategory(category: string): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.commonAPI}"category/${category}`);
+    return this.http.get<Product[]>(`${this.commonAPI}category/${category}`);
   }
 
   /**
