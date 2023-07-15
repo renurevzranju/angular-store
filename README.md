@@ -22,3 +22,7 @@ Store is a single-page application built using Angular for frontend and Express 
 - Once the product is created, follow the README in frontend folder to start the angular application.
 - Once both the setup is done. Your good to go!
 
+## Resources
+- [Auth0](https://auth0.com/docs) - Authentication for both Angular and Express APIs
+- [Pinterest](https://in.pinterest.com) and [Freepik](https://freepik.com) - for Images and Logos
+- [Boostrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/) - Basic UI elements and Icons
