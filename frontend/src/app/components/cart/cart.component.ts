@@ -40,43 +40,46 @@ export class CartComponent implements OnInit {
 
   getOrderID() {
     let userID = localStorage.getItem('user') || 0;
-    this.orderService.getActiveOrderDetailsForUser(userID as number).subscribe(order => {
-      if(order){
-        this.activeOrderID = order.id;
-        localStorage.setItem('orderID', order.id.toString());
-      }
-      else{
+    if(userID !== 0){
+      this.orderService.getActiveOrderDetailsForUser(userID as number).subscribe(order => {
+        if(order){
+          this.activeOrderID = order.id;
+          localStorage.setItem('orderID', order.id.toString());
+        }
+        else{
+          this.isCartEmpty = true;
+        }
+      },
+      err=> {
         this.isCartEmpty = true;
-      }
-    },
-    err=> {
-      this.isCartEmpty = true;
-    });
+      });
+    }
   }
 
   getCartProducts() {
-    this.orderService.getAllProducts(this.activeOrderID as number).subscribe(products => {
-      console.log(products);
-      this.totalCartValue = 0;
-      let data: OrderProduct[] = [];
-      products.forEach(item => {
-        data.push({
-          id: item.id,
-          name: item.name,
-          product_id: item.product_id,
-          price: item.price,
-          quantity:item.quantity,
-          total: item.price * item.quantity,
-          order_id: item.order_id,
-          imagecode: item.imagecode
+    if(this.activeOrderID !== 0){
+      this.orderService.getAllProducts(this.activeOrderID as number).subscribe(products => {
+        this.totalCartValue = 0;
+        let data: OrderProduct[] = [];
+        products.forEach(item => {
+          data.push({
+            id: item.id,
+            name: item.name,
+            product_id: item.product_id,
+            price: item.price,
+            quantity:item.quantity,
+            total: item.price * item.quantity,
+            order_id: item.order_id,
+            imagecode: item.imagecode
+          });
+          this.totalCartValue += (item.price * item.quantity);
         });
-        this.totalCartValue += (item.price * item.quantity);
+        this.sharedService.cartValue = this.totalCartValue;
+        this.sharedService.cartCount = data.length;
+        this.dataSource = data;
+        this.isCartEmpty = data.length == 0;
       });
-      this.sharedService.cartValue = this.totalCartValue;
-      this.sharedService.cartCount = data.length;
-      this.dataSource = data;
-      this.isCartEmpty = data.length == 0;
-    });
+    }
   }
 
   deleteProduct(orderProductID: number, name: string){

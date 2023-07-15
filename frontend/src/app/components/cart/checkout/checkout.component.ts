@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@auth0/auth0-angular';
+import { ToastrService } from 'ngx-toastr';
 import { Order } from 'src/app/helpers/order';
 import { OrderProduct } from 'src/app/helpers/orderProduct';
 import { OrderService } from 'src/app/services/order.service';
@@ -34,7 +35,11 @@ export class CheckoutComponent implements OnInit{
   cartValue: number = 0;
   cartItems: OrderProduct[] = [];
 
-  constructor(private fb: FormBuilder, public sharedService: SharedService, private auth: AuthService, private orderService: OrderService) {
+  constructor(private fb: FormBuilder,
+    public sharedService: SharedService,
+    private auth: AuthService,
+    private orderService: OrderService,
+    private toastr: ToastrService) {
     let emailRegex: RegExp =
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let phoneRegex: RegExp = /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
@@ -53,7 +58,6 @@ export class CheckoutComponent implements OnInit{
     this.auth.user$.subscribe((profile) => {
       if(profile){
         const response = profile;
-        console.log(response);
         this.userProfileJson = JSON.stringify(response, null, 2);
         this.billingForm.get("email")?.patchValue(response.email);
         this.billingForm.get("firstName")?.patchValue(response.name);
@@ -70,26 +74,28 @@ export class CheckoutComponent implements OnInit{
 
   getCartItems(){
     let orderID = localStorage.getItem('orderID') || 0;
-    this.orderService.getAllProducts(orderID as number).subscribe(products => {
-      let totalCartValue = 0;
-      let data: OrderProduct[] = [];
-      products.forEach(item => {
-        data.push({
-          id: item.id,
-          name: item.name,
-          product_id: item.product_id,
-          price: item.price,
-          quantity:item.quantity,
-          total: item.price * item.quantity,
-          order_id: item.order_id,
-          imagecode: item.imagecode
+    if(orderID != 0){
+      this.orderService.getAllProducts(orderID as number).subscribe(products => {
+        let totalCartValue = 0;
+        let data: OrderProduct[] = [];
+        products.forEach(item => {
+          data.push({
+            id: item.id,
+            name: item.name,
+            product_id: item.product_id,
+            price: item.price,
+            quantity:item.quantity,
+            total: item.price * item.quantity,
+            order_id: item.order_id,
+            imagecode: item.imagecode
+          });
+          totalCartValue += (item.price * item.quantity);
         });
-        totalCartValue += (item.price * item.quantity);
+        this.cartValue = totalCartValue;
+        this.cartItems = data;
+        this.sharedService.cartCount = data.length;
       });
-      this.cartValue = totalCartValue;
-      this.cartItems = data;
-      this.sharedService.cartCount = data.length;
-    })
+    }
   }
 
   onSubmit() {
@@ -104,12 +110,17 @@ export class CheckoutComponent implements OnInit{
       status: "completed",
       user_id: Number(userID)
     }
-    this.orderService.placeOrder(order).subscribe(response => {
-      console.log(response);
-      localStorage.removeItem("orderID");
-      this.orderPlaced = true;
-      this.sharedService.cartCount = 0;
-      this.billingForm.reset();
-    });
+    if(orderID != 0 && userID != 0){
+      this.orderService.placeOrder(order).subscribe(response => {
+        localStorage.removeItem("orderID");
+        this.orderPlaced = true;
+        this.sharedService.cartCount = 0;
+        this.billingForm.reset();
+      });
+    }
+    else{
+      this.toastr.error("Something went wrong. Contact the administrator", "Error");
+    }
+
   }
 }

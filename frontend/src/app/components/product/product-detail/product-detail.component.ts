@@ -68,8 +68,12 @@ export class ProductDetailComponent implements OnInit {
     let userID = localStorage.getItem('user') || 0;
     if (this.activeOrderID != 0) {
       this.addProductToOrder(this.productOrderData);
-    } else {
+    }
+    else if (userID != 0) {
       this.createNewOrder(Number(userID), this.productOrderData);
+    }
+    else{
+      this.toastr.error("Something went wrong. Contact the administrator", "Error");
     }
   }
 
@@ -117,7 +121,7 @@ export class ProductDetailComponent implements OnInit {
   checkIfProductAddedToCart() {
     this.orderService.checkIfProductAlreadyExists(this.productOrderData).subscribe(response => {
       if (!response || response.id == undefined) {
-        this.quantity =  0;
+        this.quantity =  1;
         this.productAlreadyInCart= false;
       }
       else {
@@ -131,14 +135,20 @@ export class ProductDetailComponent implements OnInit {
 
   getActiveOrderID(){
     let userID = localStorage.getItem('user') || 0;
-    this.orderService.getActiveOrderDetailsForUser(userID as number).subscribe(order => {
-      console.log(order);
-      if (order && order.id) {
-        this.activeOrderID = order.id;
-        this.productOrderData.order_id = order.id;
-        localStorage.setItem("orderID", order.id.toString());
-        this.checkIfProductAddedToCart();
-      }
-    });
+    if(userID != 0){
+      this.orderService.getActiveOrderDetailsForUser(userID as number).subscribe(order => {
+        if (order && order.id) {
+          this.activeOrderID = order.id;
+          this.productOrderData.order_id = order.id;
+          localStorage.setItem("orderID", order.id.toString());
+          this.checkIfProductAddedToCart();
+        }
+      });
+    }
+    else
+    {
+      this.toastr.error("Something went wrong. Contact the administrator", "Error");
+    }
+
   }
 }

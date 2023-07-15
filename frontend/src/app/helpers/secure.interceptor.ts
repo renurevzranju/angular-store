@@ -40,7 +40,7 @@ export class SecureInterceptor implements HttpInterceptor {
       mergeMap(token => {
         localStorage.setItem( 'accessToken', token.access_token);
         const tokenReq = request.clone({
-          setHeaders: { Authorization: `Bearer ${token.id_token}` }
+          setHeaders: { Authorization: `Bearer ${token.access_token}` }
         });
         return next.handle(tokenReq).pipe(catchError(errorResponse =>{
           let errMsg: string;

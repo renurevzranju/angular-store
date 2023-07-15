@@ -41,7 +41,7 @@ export class ProductListComponent implements OnInit {
 
     if (orderID) {
       this.addProductToOrder(product);
-    } else {
+    } else if(userID !== 0) {
       this.orderService.getActiveOrderDetailsForUser(userID as number).subscribe(order => {
         if (!order || order.id == undefined) {
           this.createNewOrder(Number(userID), product)
@@ -52,6 +52,8 @@ export class ProductListComponent implements OnInit {
           this.addProductToOrder(product);
         }
       });
+    } else {
+      this.toastr.error("Something went wrong. Contact the administrator", "Error");
     }
 
   }

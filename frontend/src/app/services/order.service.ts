@@ -29,7 +29,6 @@ export class OrderService {
     }
     return this.http.post<Order>(this.commonAPI + "create/"+ user_id , body).pipe(
       map(response => {
-        console.log(response);
         return response as Order;
       })
     );

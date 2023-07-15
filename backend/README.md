@@ -20,7 +20,7 @@ I'm using Windows OS, so all my commands will be related to that.
 
 1. Install the PostgreSQL from [here](https://www.postgresql.org/download/windows). Ignore if you have installed it already.
 2. Run `psql postgres` and login to the PostgreSQL database.
-3. Run `CREATE USER test_user CREATEDB CREATEROLE PASSWORD 'test_user' to create a user `test_user` with password `test_user` and have privileges to create db and new role.
+3. Run `CREATE USER test_user CREATEDB CREATEROLE PASSWORD 'test_user'` to create a user 'test_user' with password test_user and have privileges to create db and new role.
 4. Run `CREATE DATABASE store WITH OWNER = test_user;` to create the database `store`.
 5. Run `psql -h localhost -U test_user -d store` to check if the user is able to access the database store.
 
