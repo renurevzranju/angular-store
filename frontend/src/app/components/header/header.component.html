@@ -11,7 +11,9 @@
             </div>
           </div>
         </div>
-        <div class="col header-menu-column d-none d-md-block d-sm-none d-xs-none d-xl-block">
+        <div
+          class="col header-menu-column d-none d-md-block d-sm-none d-xs-none d-xl-block"
+        >
           <nav>
             <div class="main-menu">
               <ul>
@@ -38,39 +40,31 @@
             </a>
           </div>
           <!-- user-menu -->
-          <div class="icon user-icon" *ngIf="auth.isAuthenticated$ | async; else loggedOut">
+          <div
+            class="icon user-icon"
+            *ngIf="auth.isAuthenticated$ | async; else loggedOut"
+          >
             <a (click)="logout()">
               <i class="bi bi-person"></i>
             </a>
           </div>
           <ng-template #loggedOut>
             <div class="icon user-icon">
-              <a title="Login" (click)="loginWithRedirect()">
+              <a title="Login to explore" (click)="loginWithRedirect()">
                 <i class="bi bi-person-exclamation"></i>
               </a>
-          </div>
+            </div>
           </ng-template>
-          <!-- mini-cart -->
           <div class="icon mini-cart-icon">
             <a routerLink="/cart" title="Cart">
               <i class="bi bi-cart3"></i>
-              <sup *ngIf="auth.isAuthenticated$ | async">{{sharedService.cartCount}}</sup>
+              <sup *ngIf="auth.isAuthenticated$ | async">
+                {{ sharedService.cartCount }}
+              </sup>
             </a>
           </div>
-
-
-          <!-- mini-cart -->
-          <!-- Mobile Menu Button -->
-          <!-- <div class="mobile-menu-toggle d-xl-none">
-            <a href="#mobile-menu" class="toggle">
-              <i class="bi bi-list"></i>
-            </a>
-          </div> -->
         </div>
       </div>
     </div>
   </div>
 </header>
-<div class="breadcrumbs">
-
-</div>

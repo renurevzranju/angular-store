@@ -13,7 +13,6 @@ import { SharedService } from 'src/app/services/shared.service';
   styleUrls: ['./product-detail.component.scss']
 })
 export class ProductDetailComponent implements OnInit {
-  productId: number = 0;
   quantity: number = 0;
   productData: Product = {
     id: 0,
@@ -30,40 +29,72 @@ export class ProductDetailComponent implements OnInit {
   }
   productAlreadyInCart: boolean = false;
 
+  /**
+     * @constructor
+     * @param {ActivatedRoute} _route Fetch the URL parameters to get product detail
+     * @param {ProductService} productService API service to fetch product details
+     * @param {OrderService} orderService API service to fetch order details
+     * @param {SharedService} sharedService Shared service to update the cart count
+     * @param {ToastrService} toastr Success and error message service
+     * @returns void Returns nothing
+     */
   constructor(private _route: ActivatedRoute,
     private productService: ProductService,
     private orderService: OrderService,
     private toastr: ToastrService,
-    public sharedService: SharedService) {}
+    public sharedService: SharedService) { }
 
-  ngOnInit(): void{
+  /**
+ * @ngOnInit
+ * Gets the Product details based on the product id from the URL
+ * Gets the Active Order details based on the User ID
+ * @returns void Returns nothing
+ */
+  ngOnInit(): void {
     this._route.paramMap.subscribe(paramMap => {
-      this.productId = paramMap.get('id') ? Number(paramMap.get('id')) : 0;
-      this.getProductDetails(String(this.productId));
+      let productId = paramMap.get('id') ? Number(paramMap.get('id')) : 0;
+      this.getProductDetails(productId);
       this.getActiveOrderID();
     });
   }
 
-  getProductDetails(productId: string){
+  /**
+ * Calls the API to get the product details based on the productID
+ * @returns void Returns nothing
+ */
+  getProductDetails(productId: number): void {
     this.quantity = 1;
-    this.productService.getProductsByID(productId).subscribe(product => {
-      this.productData = product;
-      this.productOrderData.product_id = product.id;
-      this.productOrderData.name = product.name;
-      this.productOrderData.price = product.price;
-    });
+    if (productId != 0) {
+      this.productService.getProductsByID(productId).subscribe(product => {
+        this.productData = product;
+        this.productOrderData.product_id = product.id;
+        this.productOrderData.name = product.name;
+        this.productOrderData.price = product.price;
+      });
+    }
   }
 
-  changeQuantity(action : string) {
-    if(action === "minus"){
+  /**
+ * Increment/Decrement the quantity of the product
+ * @returns void Returns nothing
+ */
+  changeQuantity(action: string): void {
+    if (action === "minus") {
       this.quantity > 1 ? this.quantity -= 1 : null;
     }
-    else{
+    else {
       this.quantity < 10 ? this.quantity += 1 : null;
     }
   }
 
-  addToCart(){
+  /**
+ * Calls this method on click of Add to Cart button
+ * If Active Order ID exists, then add the product to the order
+ * else create a new order with the product
+ * Display error message if UserID does not exist
+ * @returns void Returns nothing
+ */
+  addToCart(): void {
     this.productOrderData.quantity = this.quantity;
     let userID = localStorage.getItem('user') || 0;
     if (this.activeOrderID != 0) {
@@ -72,12 +103,18 @@ export class ProductDetailComponent implements OnInit {
     else if (userID != 0) {
       this.createNewOrder(Number(userID), this.productOrderData);
     }
-    else{
-      this.toastr.error("Something went wrong. Contact the administrator", "Error");
+    else {
+      this.toastr.error("Something went wrong. Contact the administrator or Re-login to avoid this error", "Error");
     }
   }
 
-  createNewOrder(userID: number, product: OrderProduct) {
+  /**
+ * Creates a new order along with the product
+ * Display success message on valid response, else error message
+ * Store the order id in the local storage
+ * @returns void Returns nothing
+ */
+  createNewOrder(userID: number, product: OrderProduct): void {
     this.orderService.createOrder(userID, product).subscribe(order => {
       this.toastr.success('Successfully added to your Cart', product.name);
       localStorage.setItem('orderID', order.id.toString());
@@ -88,7 +125,12 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  addProductToOrder(product: OrderProduct) {
+  /**
+ * If the product exists in the cart, then update the quantity of the product
+ * else, add the product to the cart
+ * @returns void Returns nothing
+ */
+  addProductToOrder(product: OrderProduct): void {
     if (!this.productAlreadyInCart) {
       this.addProduct(product);
     }
@@ -98,7 +140,11 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
-  addProduct(product: OrderProduct) {
+  /**
+ * Calls API to add product to the order
+ * @returns void Returns nothing
+ */
+  addProduct(product: OrderProduct): void {
     this.orderService.addProduct(product).subscribe(op => {
       this.toastr.success('Successfully added to your Cart', product.name);
       this.sharedService.setCartCount(true);
@@ -108,7 +154,11 @@ export class ProductDetailComponent implements OnInit {
     })
   }
 
-  updateProduct(product: OrderProduct) {
+  /**
+   * Calls API to update the product quantity
+ * @returns void Returns nothing
+ */
+  updateProduct(product: OrderProduct): void {
     this.orderService.updateProductQuantity(product).subscribe(response => {
       this.toastr.success('Successfully updated the Cart', product.name);
     }, error => {
@@ -117,25 +167,33 @@ export class ProductDetailComponent implements OnInit {
     })
   }
 
-
-  checkIfProductAddedToCart() {
+  /**
+   * Checks if the product is already in the cart
+   * @returns void Returns nothing
+   */
+  checkIfProductAddedToCart(): void {
     this.orderService.checkIfProductAlreadyExists(this.productOrderData).subscribe(response => {
       if (!response || response.id == undefined) {
-        this.quantity =  1;
-        this.productAlreadyInCart= false;
+        this.quantity = 1;
+        this.productAlreadyInCart = false;
       }
       else {
         this.quantity = response.quantity;
         this.productOrderData.quantity = response.quantity;
         this.productOrderData.id = response.id;
-        this.productAlreadyInCart= true;
+        this.productAlreadyInCart = true;
       }
     });
   }
 
-  getActiveOrderID(){
+  /**
+ * Calls the API to get the active order ID for the user
+ * User ID is required and fetched from the local storage
+ * @returns void Returns nothing
+ */
+  getActiveOrderID(): void {
     let userID = localStorage.getItem('user') || 0;
-    if(userID != 0){
+    if (userID != 0) {
       this.orderService.getActiveOrderDetailsForUser(userID as number).subscribe(order => {
         if (order && order.id) {
           this.activeOrderID = order.id;
@@ -145,8 +203,7 @@ export class ProductDetailComponent implements OnInit {
         }
       });
     }
-    else
-    {
+    else {
       this.toastr.error("Something went wrong. Contact the administrator", "Error");
     }
 

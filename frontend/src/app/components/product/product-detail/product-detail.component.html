@@ -1,37 +1,40 @@
 <div id="product-detail" class="container">
-    <div class="row">
-        <div class="col-lg-6 col-12">
-            <div class="product-img">
-                <img src="../../../../assets/images/product/{{productData.imagecode}}" alt="product image" />
-            </div>
-        </div>
-        <div class="col-lg-6 col-12">
-            <div class="product-info">
-                <h3 class="mb-3">{{productData.name}}</h3>
-                <div class="product-price spacing">{{ 149 | currency : "INR" }}</div>
-                <div class="product-category spacing">
-                    <strong class="d-inline-block pe-2">Category:</strong>
-                    <span>{{productData.category | titlecase }}</span>
-                </div>
-                <div class="product-desc spacing">
-                    <strong class="d-inline-block pe-2">Description:</strong>
-                    <span>{{productData.description}}</span>
-                </div>
-                <div class="product-add-cart spacing">
-                    <ul class="p-0 m-0">
-                        <li>
-                            <div class="cart-plus-minus">
-                                <div class="dec quantityButton" (click)="changeQuantity('minus')">-</div>
-                                <input type="text" [(ngModel)]="quantity" class="cart-plus-minus-box">
-                                <div class="inc quantityButton" (click)="changeQuantity('plus')">+</div>
-                            </div>
-                        </li>
-                        <li>
-                            <button class="add-to-cart custom-button mr-0" (click)="addToCart()"><i class="bi bi-cart3 px-2"></i>ADD TO CART</button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-lg-6 col-12">
+			<div class="product-img">
+				<img src="../../../../assets/images/product/{{productData.imagecode}}" alt="product image">
+			</div>
+		</div>
+		<div class="col-lg-6 col-12">
+			<div class="product-info">
+				<h3 class="mb-3">{{productData.name}}</h3>
+				<div class="product-price spacing">{{ 149 | currency : "INR" }}</div>
+				<div class="product-category spacing">
+					<strong class="d-inline-block pe-2">Category:</strong>
+					<span>{{productData.category | titlecase }}</span>
+				</div>
+				<div class="product-desc spacing">
+					<strong class="d-inline-block pe-2">Description:</strong>
+					<span>{{productData.description}}</span>
+				</div>
+				<div class="product-add-cart spacing">
+					<ul class="p-0 m-0">
+						<li>
+							<div class="cart-plus-minus">
+								<div class="dec quantityButton" (click)="changeQuantity('minus')">-</div>
+								<input type="text" [(ngModel)]="quantity" class="cart-plus-minus-box">
+								<div class="inc quantityButton" (click)="changeQuantity('plus')">+</div>
+							</div>
+						</li>
+						<li>
+							<button class="add-to-cart custom-button mr-0" (click)="addToCart()">
+								<i class="bi bi-cart3 px-2"></i>
+								ADD TO CART
+							</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

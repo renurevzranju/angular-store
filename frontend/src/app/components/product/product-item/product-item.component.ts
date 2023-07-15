@@ -13,7 +13,11 @@ export class ProductItemComponent {
 
   constructor() { }
 
-  addProductToCart(item: Product){
+  /**
+ * On click of the Cart icon, product data is emitted to the parent component to display success message
+ * @returns void Returns nothing
+ */
+  addProductToCart(item: Product) {
     let orderID = localStorage.getItem('orderID');
     let product: OrderProduct = {
       order_id: orderID ? Number(orderID) : 0,
@@ -22,7 +26,7 @@ export class ProductItemComponent {
       price: item.price,
       quantity: 1,
       imagecode: item.imagecode,
-      total : item.price * 1
+      total: item.price * 1
     }
     this.addToCart.emit(product);
   }

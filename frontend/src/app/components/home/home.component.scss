@@ -1,56 +1,54 @@
-.banner{
-    margin: 60px auto 40px;
+.banner {
+  margin: 60px auto 40px;
 
-    .banner-img{
-        overflow: hidden;
+  .banner-img {
+    overflow: hidden;
 
-        &:hover img{
-            transition: all 3.5s ease 0s;
-            -ms-transform: scale(1.1);
-            transform: scale(1.1);
-            -webkit-transform: scale(1.1);
-        }
+    &:hover img {
+      transition: all 3.5s ease 0s;
+      -ms-transform: scale(1.1);
+      transform: scale(1.1);
+      -webkit-transform: scale(1.1);
     }
+  }
 }
 
+.product-categories {
+  padding-bottom: 90px;
+  .meat {
+    background-image: url("../../../assets/images/category/meat.jpg");
+  }
+  .fruit {
+    background-image: url("../../../assets/images/category/fruits.jpg");
+  }
+  .bread {
+    background-image: url("../../../assets/images/category/bread.jpg");
+  }
+  .beverage {
+    background-image: url("../../../assets/images/category/juice.jpg");
+  }
+  .veg {
+    background-image: url("../../../assets/images/category/veggies.jpeg");
+    height: 406px;
+  }
+  .category {
+    padding: 90px 1px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 3.3s ease 0s;
 
-.product-categories{
-    padding-bottom: 90px;
-    .meat{
-        background-image: url("../../../assets/images/category/meat.jpg");
+    &:hover {
+      opacity: 0.6;
     }
-    .fruit{
-        background-image: url("../../../assets/images/category/fruits.jpg");
-    }
-    .bread{
-        background-image: url("../../../assets/images/category/bread.jpg");
-    }
-    .beverage{
-        background-image: url("../../../assets/images/category/juice.jpg");
-    }
-    .veg{
-        background-image: url("../../../assets/images/category/veggies.jpeg");
-        height: 406px;
-    }
-    .category{
-        padding: 90px 1px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        transition: all 3.3s ease 0s;
 
-        &:hover{
-            opacity: 0.6;
-        }
-
-        span{
-            color: var(--white);
-            background-color: var(--custom__secondary-color);
-            padding: 15px 40px;
-
-        }
+    span {
+      color: var(--white);
+      background-color: var(--custom__secondary-color);
+      padding: 15px 40px;
     }
+  }
 }

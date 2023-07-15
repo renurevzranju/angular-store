@@ -1,6 +1,5 @@
 .product-item {
-  border: 2px solid;
-  border-color: var(--border-color-8);
+  border: 2px solid var(--border-color-8);
   transition: all 0.3s ease 0s;
   margin-bottom: 50px;
   position: relative;

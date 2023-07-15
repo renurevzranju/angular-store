@@ -1,23 +1,25 @@
 <mat-card class="product-item">
-    <img mat-card-image src="../../../../assets/images/product/{{ product.imagecode }}" alt="product image" />
-    <mat-card-content class="product-info">
-        <div class="product-title" [routerLink]="['/products', product.id]">{{ product.name }}</div>
-        <div class="product-price">
-            {{ product.price | currency : "INR" }}
-        </div>
-        <div class="product-actions">
-            <ul class="d-inline-block p-0 m-0">
-                <li>
-                    <a [routerLink]="['/products', product.id]">
-                        <i class="bi bi-eye-fill"></i>
-                    </a>
-                </li>
-                <li>
-                    <a (click)="addProductToCart(product)">
-                        <i class="bi bi-cart-plus"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </mat-card-content>
+  <img mat-card-image src="../../../../assets/images/product/{{ product.imagecode }}" alt="product image" />
+  <mat-card-content class="product-info">
+    <div class="product-title" [routerLink]="['/products', product.id]">
+      {{ product.name }}
+    </div>
+    <div class="product-price">
+      {{ product.price | currency : "INR" }}
+    </div>
+    <div class="product-actions">
+      <ul class="d-inline-block p-0 m-0">
+        <li>
+          <a [routerLink]="['/products', product.id]">
+            <i class="bi bi-eye-fill"></i>
+          </a>
+        </li>
+        <li>
+          <a (click)="addProductToCart(product)">
+            <i class="bi bi-cart-plus"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </mat-card-content>
 </mat-card>
