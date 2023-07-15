@@ -1,10 +1,9 @@
 {
-    "domain": "dev-revathi.us.auth0.com",
-    "clientId": "gydpw41uES82u9iOTmZGlFg7kYGeGPNG",
-    "apiUri": "http://localhost:5000",
-    "appUri": "http://localhost:4200",
-    "errorPath": "/error",
-    "audience": "https://dev-revathi.us.auth0.com/api/v2/",
-    "scope": "openid profile email",
-    "response_type": "token"
+  "domain": "dev-revathi.us.auth0.com",
+  "clientId": "gydpw41uES82u9iOTmZGlFg7kYGeGPNG",
+  "apiUri": "http://localhost:5000",
+  "appUri": "http://localhost:4200",
+  "errorPath": "/error",
+  "audience": "https://dev-revathi.us.auth0.com/api/v2/",
+  "scope": "openid profile email"
 }

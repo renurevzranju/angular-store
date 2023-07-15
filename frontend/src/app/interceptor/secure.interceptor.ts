@@ -12,11 +12,18 @@ import { mergeMap, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class SecureInterceptor implements HttpInterceptor {
+  userToken = localStorage.getItem( 'accessToken' );
 
-  private userToken = localStorage.getItem( 'accessToken' );
-
+  /**
+   * @constructor
+   * @param {AuthService} auth To get the access token silently from Auth0
+ */
   constructor(private auth: AuthService) {}
 
+  /**
+   * Get the access token from local storage if exists, else get from Auth0 to send to API for authentication
+   * Couldn't refactor this code
+ */
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     if ( this.userToken ) {
       const tokenReq: HttpRequest<any> = request.clone( {

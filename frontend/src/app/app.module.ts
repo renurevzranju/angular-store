@@ -13,7 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule, ReactiveFormsModule  }   from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { SecureInterceptor } from './helpers/secure.interceptor';
+import { SecureInterceptor } from './interceptor/secure.interceptor';
 
 @NgModule({
   declarations: [

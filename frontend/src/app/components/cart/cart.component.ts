@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
-import { OrderProduct } from 'src/app/helpers/orderProduct';
+import { OrderProduct } from 'src/app/models/orderProduct';
 import { OrderService } from 'src/app/services/order.service';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/services/shared.service';

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderProduct } from 'src/app/helpers/orderProduct';
-import { Product } from 'src/app/helpers/product';
+import { OrderProduct } from 'src/app/models/orderProduct';
+import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { SharedService } from 'src/app/services/shared.service';
 import { ToastrService } from 'ngx-toastr';

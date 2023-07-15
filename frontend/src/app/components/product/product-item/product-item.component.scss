@@ -1,5 +1,5 @@
 .product-item {
-  border: 2px solid var(--border-color-8);
+  border: 2px solid var(--border-color-2);
   transition: all 0.3s ease 0s;
   margin-bottom: 50px;
   position: relative;
@@ -66,7 +66,7 @@
 
       & > a {
         border-radius: 100%;
-        box-shadow: var(--custom__box-shadow-3);
+        box-shadow: var(--custom__box-shadow-2);
         display: block;
         background-color: var(--white);
 

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@auth0/auth0-angular';
 import { ToastrService } from 'ngx-toastr';
-import { Order } from 'src/app/helpers/order';
-import { OrderProduct } from 'src/app/helpers/orderProduct';
+import { Order } from 'src/app/models/order';
+import { OrderProduct } from 'src/app/models/orderProduct';
 import { OrderService } from 'src/app/services/order.service';
 import { SharedService } from 'src/app/services/shared.service';
 

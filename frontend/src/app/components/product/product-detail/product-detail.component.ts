@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Product } from 'src/app/helpers/product';
+import { Product } from 'src/app/models/product';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { OrderService } from 'src/app/services/order.service';
-import { OrderProduct } from 'src/app/helpers/orderProduct';
+import { OrderProduct } from 'src/app/models/orderProduct';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from 'src/app/services/shared.service';
 
@@ -25,7 +25,9 @@ export class ProductDetailComponent implements OnInit {
   activeOrderID: number = 0;
   productOrderData: OrderProduct = {
     price: 0,
-    quantity: 1
+    quantity: 1,
+    product_id: 0,
+    name: ""
   }
   productAlreadyInCart: boolean = false;
 

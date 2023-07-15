@@ -5,8 +5,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthGuard } from '@auth0/auth0-angular';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: "home", component: HomeComponent},
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: "home", component: HomeComponent },
   {
     path: 'products',
     loadChildren: () => import('./components/product/product.module').then(m => m.ProductModule),
