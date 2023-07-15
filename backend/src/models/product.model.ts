@@ -32,7 +32,7 @@ export class ProductModel {
         product.price,
         product.category,
         product.description,
-        product.imagecode
+        product.imagecode,
       ]);
       const createdProduct = result.rows[0];
       connection.release();

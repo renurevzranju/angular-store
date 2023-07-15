@@ -1,8 +1,4 @@
-# Storefront Backend Project
-
-## Getting Started
-
-This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run `yarn` in your terminal at the project root.
+# Store Backend Project
 
 ### Setting up the environment
 After cloning/downloading this repo, create a file named '.env' and add the below environment variables.
@@ -11,7 +7,12 @@ After cloning/downloading this repo, create a file named '.env' and add the belo
 POSTGRES_HOST = 127.0.0.1
 POSTGRES_DB = store
 POSTGRES_USER = test_user
+POSTGRES_PASSWORD = test_user
 ENV = dev
+AUTH0_DOMAIN = dev-revathi.us.auth0.com
+AUTH0_API_AUDIENCE = https://dev-revathi.us.auth0.com/api/v2/
+AUTH0_JWKURI = https://dev-revathi.us.auth0.com/.well-known/jwks.json
+AUTH0_ALGORITHM = RS256
 ```
 
 ### Setting up postgresql
@@ -27,12 +28,12 @@ I'm using Windows OS, so all my commands will be related to that.
 
 Clone the project
 ```
-  git clone https://github.com/renurevzranju/storefront-backend.git
+  git clone https://github.com/renurevzranju/angular-store.git
 ```
 
 Go to the project directory
 ```
-  cd storefront-backend
+  cd angular-store\backend
 ```
 
 Install dependencies
@@ -57,11 +58,6 @@ Start the application in watch mode
   npm run watch
 ```
 
-Run Unit Test using Jasmine Library
-```
-  npm run test
-```
-
 Format the code
 ```
   npm run prettier
@@ -79,28 +75,37 @@ Server will be running on port 5000
 ### API Endpoints
 
 #### Users
-- POST http://localhost:5000/api/users -Create. Parameters are `user_name`, `password`, `first_name` and `last_name. On successful creation, JWT token will be returned. Use this token for authentication of other routes
-- POST http://localhost:5000/api/users/login -Login. Parameters are `user_name` and `password`. on successful login, JWT token will generated and returned.
+- POST http://localhost:5000/api/users -Create. Parameters are `user_name` and `email`. [token required]
 - GET http://localhost:5000/api/users -Index [token required].
 - GET http://localhost:5000/api/users/:id -Show [token required]
-- PUT http://localhost:5000/api/users/:id -Edit [token required]
-- DELETE http://localhost:5000/api/users/:id -Delete [token required]
+- GET http://localhost:5000/api/users/getUserByEmail/:email -Get User ID based on email [token required]
 
 #### Products
-- GET http://localhost:5000/api/products -Index
-- GET http://localhost:5000/api/products/:id -Show
-- POST http://localhost:5000/api/products -Create [token required]. Parameters are: `name`, `price` and `category`.
-- GET http://localhost:5000/api/products/category/:category -Products by category
-- GET http://localhost:5000/api/products/popular -Top 5 popular products
-- PUT http://localhost:5000/api/products/:id -Edit. Parameters are: `name`, `price` and `category`.
-- DELETE http://localhost:5000/api/products/:id -Delete
+- GET http://localhost:5000/api/products -Index - Ignoring token verification to add products before starting the Angular application.
+- GET http://localhost:5000/api/products/:id -Show [token required]
+- POST http://localhost:5000/api/products -Create [token required]. Parameters are: `name`, `price`, `category`, `description` and `imagecode`. [token required]
+- GET http://localhost:5000/api/products/category/:category -Products by category [token required]
+- GET http://localhost:5000/api/products/popular -Top 5 popular products [token required]
+```
+Create Product Example:
+{
+  "name": "Passion Fruit, 1 kg",
+  "price": 575,
+  "category": "fruits",
+  "description": "A fruit that gives the taste buds an explosion of sweetness to tartness, passion fruit is generally round shaped with yellow-orange skin.The flesh of a passion fruit is soft and juicy. Its jelly like texture with the crunchiness of numerous tart seeds within the flesh is a taste loved by many.",
+  "imageCode": "pas.png"
+}
+
+For more products refer [here](../frontend/products.json)
+```
 
 #### Orders
-- GET http://localhost:5000/api/orders -Index [token required]
-- GET http://localhost:5000/api/orders/:id -Show order by user_id [token required].
+- GET http://localhost:5000/api/orders/cart/:id -Get all the products by order_id [token required].
 - GET http://localhost:5000/api/orders/getOrderByStatus/:id/:status - Orders by status and user_id [token required]
-- PUT http://localhost:5000/api/orders/status/:user_id - Update order status [token required]
-- DELETE http://localhost:5000/api/orders/:id -Delete order by order_id [token required]
+- GET http://localhost:5000/api/orders/product/:orderID/:productID -Product added in the order [token required]
+- PUT http://localhost:5000/api/orders/status - Update order status [token required].Parameters are: `status`, `user_id` and `id` of the order.
+- PUT http://localhost:5000/api/orders/updateQuantity - Update product quantity in the order-product [token required].Parameters are: `quantity` and `id` of the order-product.
+- DELETE http://localhost:5000/api/orders//deleteProduct/:orderProductID -Delete product in the order by order_product_id [token required]
 - POST http://localhost:5000/api/orders/addProduct -Add products to order [token required]. Parameters are: `product_id`, `order_id` and `quantity`
 - POST http://localhost:5000/api/orders/create/:user_id -Create [token required]. Parameters are: `status` and `products`. [`user_id`(provided in url)].
 ```
@@ -111,10 +116,6 @@ Create Order Example:
     {
       "product_id": 1,
       "quantity": 3
-    },
-    {
-      "product_id": 2,
-      "quantity": 5
     }
   ]
 }

@@ -10,7 +10,7 @@ export default class UserHandler {
       if (user_name && email) {
         const users = await model.create({
           user_name,
-          email
+          email,
         });
 
         response
@@ -18,30 +18,11 @@ export default class UserHandler {
           .json({ message: "User created successfully", data: users });
       } else {
         response.status(400).json({
-          errorMessage:
-            "user_name and email are required",
+          errorMessage: "user_name and email are required",
         });
       }
     } catch (error) {
       response.status(500).json(`error while creating user: ${error}`);
-    }
-  }
-
-  async delete(_request: Request, response: Response) {
-    try {
-      const { id } = _request.params;
-      const rowCount = await model.delete(Number(id));
-      if (rowCount > 0) {
-        response
-          .status(200)
-          .json({ message: `Successfully deleted user with id: ${id}` });
-      } else {
-        response
-          .status(400)
-          .json({ message: `Couldn't delete user with id: ${id}` });
-      }
-    } catch (error) {
-      response.status(500).json(`error while deleting the user: ${error}`);
     }
   }
 

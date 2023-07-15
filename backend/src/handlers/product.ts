@@ -7,18 +7,17 @@ export default class ProductHandler {
   async create(_request: Request, response: Response) {
     try {
       const { name, price, category, description, imagecode } = _request.body;
-      console.log(name, price, category, description, imagecode);
       if (name && price && category && description && imagecode) {
         const product = await model.create({
           name,
           price: Number(price),
           category,
           description,
-          imagecode
+          imagecode,
         });
         response
           .status(200)
-          .json({ message: "Product created successfully", product: product });
+          .json(product);
       } else {
         response
           .status(400)

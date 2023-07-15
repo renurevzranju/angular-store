@@ -21,10 +21,7 @@ export class UserModel {
       const sql =
         "INSERT INTO users (user_name, email) VALUES($1, $2) RETURNING *";
 
-      const result = await connection.query(sql, [
-        user.user_name,
-        user.email
-      ]);
+      const result = await connection.query(sql, [user.user_name, user.email]);
       const createdUser = result.rows[0];
       connection.release();
 
@@ -33,43 +30,6 @@ export class UserModel {
       throw new Error(
         `Unable to add new user ${user.user_name}. Error: ${err}`
       );
-    }
-  }
-
-  /**
-   * Delete user in the database
-   * @param {number} id Id of the user.
-   * @return {number} No of rows deleted.
-   */
-  async delete(id: number): Promise<number> {
-    try {
-      // @ts-ignore
-      const connection = await client.connect();
-      const sql = "DELETE FROM users WHERE id = ($1)";
-
-      const result = await connection.query(sql, [id]);
-      const count = result.rowCount;
-      connection.release();
-
-      return count;
-    } catch (err) {
-      throw new Error(`Unable to delete user ${id}. Error: ${err}`);
-    }
-  }
-
-  /**
-   * Delete All user in the database - Only for test suites
-   */
-  async deleteAll(): Promise<void> {
-    try {
-      // @ts-ignore
-      const connection = await client.connect();
-      const sql = "DELETE FROM users";
-
-      await connection.query(sql);
-      connection.release();
-    } catch (err) {
-      throw new Error(`Unable to delete all users. Error: ${err}`);
     }
   }
 

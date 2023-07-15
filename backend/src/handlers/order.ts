@@ -7,7 +7,6 @@ export default class OrderHandler {
   async addProduct(_request: Request, response: Response) {
     try {
       const { order_id, product_id, quantity } = _request.body;
-      console.log(order_id, product_id, quantity);
       if (order_id && product_id && quantity) {
         const addProductToOrder = await model.addProduct({
           order_id,
@@ -38,9 +37,7 @@ export default class OrderHandler {
           status,
           products,
         });
-        response
-          .status(200)
-          .json(orderPlaced);
+        response.status(200).json(orderPlaced);
       } else {
         response.status(400).json({
           error: "status and products are required to create an order",
@@ -51,43 +48,15 @@ export default class OrderHandler {
     }
   }
 
-  async delete(_request: Request, response: Response) {
-    try {
-      const { id } = _request.params;
-      const rowCount = await model.delete(Number(id));
-      if (rowCount > 0) {
-        response
-          .status(200)
-          .json({ message: `Successfully deleted order with id: ${id}` });
-      } else {
-        response
-          .status(400)
-          .json({ message: `Couldn't delete order with id: ${id}` });
-      }
-    } catch (error) {
-      response.status(500).json(`error while deleting the order: ${error}`);
-    }
-  }
-
   async deleteProduct(_request: Request, response: Response) {
     try {
       const { orderProductID } = _request.params;
       const rowCount = await model.deleteProduct(Number(orderProductID));
-      console.log(rowCount);
       response.status(200).json(rowCount);
-    } catch (error) {
-      response.status(500).json(`error while deleting the product from the order: ${error}`);
-    }
-  }
-
-  async index(_request: Request, response: Response) {
-    try {
-      const orders = await model.index();
-      response.status(200).json(orders);
     } catch (error) {
       response
         .status(500)
-        .json(`error while fetching the order list: ${error}`);
+        .json(`error while deleting the product from the order: ${error}`);
     }
   }
 
@@ -111,35 +80,29 @@ export default class OrderHandler {
     } catch (error) {
       response
         .status(500)
-        .json(`error while fetching the products by order_id [${id}]: ${error}`);
+        .json(
+          `error while fetching the products by order_id [${id}]: ${error}`
+        );
     }
   }
 
   async getExistingProduct(_request: Request, response: Response) {
     const { orderID, productID } = _request.params;
-    console.log(orderID, productID);
     try {
-      const orders = await model.getExistingProduct(Number(orderID), Number(productID));
-      console.log(orders);
+      const orders = await model.getExistingProduct(
+        Number(orderID),
+        Number(productID)
+      );
       //If product is empty check
-      if (orders.length < 1)
-        return response.status(200).json([]);
+      if (orders.length < 1) return response.status(200).json([]);
 
       response.status(200).json(orders[0]);
     } catch (error) {
       response
         .status(500)
-        .json(`error while fetching the order by order_id [${orderID}]: ${error}`);
-    }
-  }
-
-  async show(_request: Request, response: Response) {
-    try {
-      const id = _request.params.id;
-      const orders = await model.show(Number(id));
-      response.status(200).json(orders);
-    } catch (error) {
-      response.status(500).json(`error while fetching the order: ${error}`);
+        .json(
+          `error while fetching the order by order_id [${orderID}]: ${error}`
+        );
     }
   }
 
@@ -147,11 +110,15 @@ export default class OrderHandler {
     try {
       const { id, quantity } = _request.body;
       if (id && quantity) {
-        const updatedOrder = await model.updateQuantity(Number(id), Number(quantity));
+        const updatedOrder = await model.updateQuantity(
+          Number(id),
+          Number(quantity)
+        );
         response.status(200).json(updatedOrder);
       } else {
         response.status(400).json({
-          error: "quantity and id are required to update an quantity of product in order",
+          error:
+            "quantity and id are required to update an quantity of product in order",
         });
       }
     } catch (error) {
