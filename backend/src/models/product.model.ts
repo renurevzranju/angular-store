@@ -25,7 +25,7 @@ export class ProductModel {
       // @ts-ignore
       const connection = await client.connect();
       const sql =
-        "INSERT INTO products (name, price, category, description, imagecode) VALUES($1, $2, $3, $4, $5) RETURNING *";
+        "INSERT INTO products (name, price, category, description, imagecode) VALUES ($1, $2, $3, $4, $5) RETURNING *";
 
       const result = await connection.query(sql, [
         product.name,
